@@ -28,12 +28,6 @@
             android:text="Recuperar email"
             android:onClick="recuperateMail"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="mierda"
-            android:onClick="arroba"/>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
