@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recovery_pass.RecoverPasssActivity">
+    tools:context=".ui.recovery_pass.RecoverPassActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +27,12 @@
             android:layout_gravity="center_horizontal"
             android:text="Recuperar email"
             android:onClick="recuperateMail"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mierda"
+            android:onClick="arroba"/>
 
     </LinearLayout>
 

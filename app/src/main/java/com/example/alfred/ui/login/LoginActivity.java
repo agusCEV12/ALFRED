@@ -20,10 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
-import com.example.alfred.ui.login.LoginViewModel;
-import com.example.alfred.ui.login.LoginViewModelFactory;
 import com.example.alfred.databinding.ActivityLoginBinding;
-import com.example.alfred.ui.recovery_pass.RecoverPasssActivity;
+import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -138,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void goToForgotPass(View view) {
-        Intent intent = new Intent(this, RecoverPasssActivity.class);
+        Intent intent = new Intent(this, RecoverPassActivity.class);
         startActivity(intent);
     }
 }
