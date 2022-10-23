@@ -23,6 +23,7 @@ import com.example.alfred.R;
 import com.example.alfred.ui.login.LoginViewModel;
 import com.example.alfred.ui.login.LoginViewModelFactory;
 import com.example.alfred.databinding.ActivityLoginBinding;
+import com.example.alfred.ui.recovery_pass.RecoverPasssActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -134,6 +135,10 @@ public class LoginActivity extends AppCompatActivity {
     // navegacion pantalla logica del formulario
     public void goToRegister (View view) {
         Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+    public void goToForgotPass(View view) {
+        Intent intent = new Intent(this, RecoverPasssActivity.class);
         startActivity(intent);
     }
 }
