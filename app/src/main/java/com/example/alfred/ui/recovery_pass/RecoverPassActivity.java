@@ -1,5 +1,7 @@
 package com.example.alfred.ui.recovery_pass;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -13,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Lista_compra;
 
 import java.util.Arrays;
 
@@ -20,7 +23,9 @@ public class RecoverPassActivity extends AppCompatActivity {
 
     Button baton;
     EditText introduceMail;
+    Button list;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,7 @@ public class RecoverPassActivity extends AppCompatActivity {
 
         baton = findViewById(R.id.recuperarMailBut);
         introduceMail = findViewById(R.id.textMail);
+        list = findViewById(R.id.btn_list);
 
         introduceMail.getText().clear();
     }
@@ -41,5 +47,10 @@ public class RecoverPassActivity extends AppCompatActivity {
         } else {
             Toast.makeText(getApplication(), "Error al rellenar formulario", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goToList(View view) {
+        Intent intent = new Intent(this, Lista_compra.class);
+        startActivity(intent);
     }
 }
