@@ -56,6 +56,7 @@ public class Lista_compra extends AppCompatActivity {
             }
         });
 
+        // Borramos el item de la lista que mantengamos presionado
         lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
