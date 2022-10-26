@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints"
             android:hint="Nombre del Gasto"
-            android:layout_gravity="center"
-            android:layout_marginTop="500px" />
+            android:layout_gravity="center" />
 
         <EditText
             android:id="@+id/text_cantidad"
@@ -31,21 +30,20 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="50px">
+            android:layout_marginTop="50px"
+            android:layout_gravity="center_horizontal">
 
             <Button
                 android:id="@+id/btn_popup_cancelar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:layout_marginLeft="100px"/>
+                android:text="Cancelar" />
 
             <Button
                 android:id="@+id/btn_popup_aceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aceptar"
-                android:layout_marginLeft="400px"/>
+                android:text="Aceptar" />
 
         </LinearLayout>
 
