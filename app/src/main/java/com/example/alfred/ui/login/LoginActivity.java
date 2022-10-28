@@ -135,6 +135,8 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
+
+    //Navegacion a la pantalla de contraseña olvidada
     public void goToForgotPass(View view) {
         Intent intent = new Intent(this, RecoverPassActivity.class);
         startActivity(intent);
