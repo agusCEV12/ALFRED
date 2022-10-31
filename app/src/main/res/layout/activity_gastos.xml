@@ -25,16 +25,38 @@
       android:paddingLeft="10px">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:id="@+id/edit_item_gastos"
+        android:layout_width="178dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginRight="170dp"
+        android:layout_marginBottom="5dp"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:text=""
-        android:id="@+id/edit_item_gastos"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btn_add_gastos"
-        android:layout_alignParentLeft="true"
+        android:hint="Nombre"/>
+
+    <EditText
+        android:id="@+id/edit_2_item_gastos"
+        android:layout_width="146dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:imeOptions="actionDone"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="212dp"
+        android:layout_marginLeft="212dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toLeftOf="@+id/btn_add_gastos"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Costo"/>
 
     <Button
         android:id="@+id/btn_add_gastos"

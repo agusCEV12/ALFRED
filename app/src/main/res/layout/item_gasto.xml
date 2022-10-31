@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
-    <CheckBox
-        android:id="@+id/checkbox_item_gasto"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:text="CheckBox"
-        android:clickable="false"
-        android:focusable="false"/>
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/checkbox_item_gasto"
+            android:layout_width="wrap_content"
+            android:layout_height="?attr/listPreferredItemHeight"
+            android:clickable="false"
+            android:focusable="false"
+            android:text="CheckBox" />
+
+
+        <TextView
+            android:id="@+id/textView_precio_item_gastos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="20dp"
+            android:text="Costo"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/btn_item_gastos"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="X"
+            android:textAlignment="center"
+            android:textSize="100px"
+            android:clickable="false"
+            android:focusable="false"/>
+
+    </RelativeLayout>
+
+
+
 </LinearLayout>
