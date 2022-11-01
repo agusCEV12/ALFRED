@@ -20,8 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
-import com.example.alfred.ui.login.LoginViewModel;
-import com.example.alfred.ui.login.LoginViewModelFactory;
+import com.example.alfred.Register;
 import com.example.alfred.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -81,17 +80,17 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
+        @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // ignore
             }
 
-            @Override
+        @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // ignore
             }
 
-            @Override
+        @Override
             public void afterTextChanged(Editable s) {
                 loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
