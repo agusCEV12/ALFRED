@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -21,9 +22,10 @@ import android.widget.Toast;
 
 import com.example.alfred.R;
 import com.example.alfred.databinding.ActivityLoginBinding;
+import com.example.alfred.ui.ToolbarActivity;
 import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends ToolbarActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
@@ -140,4 +142,11 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RecoverPassActivity.class);
         startActivity(intent);
     }
+
+    /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    } */
 }

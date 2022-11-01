@@ -16,12 +16,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
+import com.example.alfred.ui.ToolbarActivity;
 import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Register extends AppCompatActivity {
+public class Register extends ToolbarActivity {
     EditText name, mail, password1, password2;
     RadioButton termsUse;
 
