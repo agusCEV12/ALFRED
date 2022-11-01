@@ -41,10 +41,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Has olvidado tu contraseña?"
+        android:text="@string/has_olvidado_tu_contrase_a"
         tools:layout_editor_absoluteX="3dp"
         tools:layout_editor_absoluteY="278dp"
-        android:onClick="goToForgotPass"
+        android:onClick="goToForgotPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
