@@ -1,4 +1,4 @@
-package com.example.alfred;
+package com.example.alfred.ui.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alfred.R;
 import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
@@ -77,7 +78,7 @@ public class Register extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(final String response) {
-                        Toast.makeText(getApplication(), "Registrado correctamente su pana", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplication(), "Registrado correctamente ", Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

@@ -20,9 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
-import com.example.alfred.ui.login.LoginViewModel;
-import com.example.alfred.ui.login.LoginViewModelFactory;
 import com.example.alfred.databinding.ActivityLoginBinding;
+import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -136,4 +135,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
+
+
 }
