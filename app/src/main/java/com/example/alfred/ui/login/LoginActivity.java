@@ -1,36 +1,68 @@
 package com.example.alfred.ui.login;
 
-import android.app.Activity;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alfred.R;
 import com.example.alfred.databinding.ActivityLoginBinding;
-import com.example.alfred.ui.ToolbarActivity;
 import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
-public class LoginActivity extends ToolbarActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
+    private EditText userName, password;
+    private Button btnLogin;
+
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        userName = findViewById(R.id.et_username);
+        password = findViewById(R.id.et_password);
+       // loginButton = findViewById(R.id.btn_login);
+
+       /* loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userName.getText().toString().length() == 0 || password.getText().toString().length() == 0) {
+                    displayAlertDialog(getString(R.string.error), getString(R.string.complete_all_the_fields));
+                } else {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_name", userName.getText().toString());
+                    params.put("password", AppData.encodePassword(password.getText().toString()));
+                    new VolleyRequestClassWalkiria(Login.this, AppData.LOGIN_SERVICE_URL, Request.Method.GET, params, progressBar, 0);
+                }
+
+            }
+        });*/
+    }
+
+
+    // navegacion pantalla formulario
+    public void goToRegister (View view) {
+        Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+
+    public void goToForgotPassword (View view) {
+        Intent intent = new Intent(this, RecoverPassActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToHome(View view){
+        Intent intent = new Intent(this, RecoverPassActivity.class);
+        startActivity(intent);
+    }
+}
+
+   /* @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -131,22 +163,4 @@ public class LoginActivity extends ToolbarActivity {
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
-
-    // navegacion pantalla logica del formulario
-    public void goToRegister (View view) {
-        Intent intent = new Intent(this, Register.class);
-        startActivity(intent);
-    }
-
-    public void goToForgotPassword (View view) {
-        Intent intent = new Intent(this, RecoverPassActivity.class);
-        startActivity(intent);
-    }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return super.onCreateOptionsMenu(menu);
-    } */
-}
+*/
