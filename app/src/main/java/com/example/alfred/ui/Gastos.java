@@ -27,7 +27,7 @@ import com.example.alfred.R;
 
 import java.util.ArrayList;
 
-public class Gastos extends AppCompatActivity {
+public class Gastos extends ToolbarActivity {
 
     private ArrayList<item_gasto> itemList_gastos;
     private Gastos_adapter adapter_gastos;
@@ -35,8 +35,8 @@ public class Gastos extends AppCompatActivity {
 
     private ListView lista_gastos;
     private Button btn_add_gastos;
-    private EditText edit_item_gastos;
-    private EditText edit_2_item_gastos;
+    private TextView text_item_gastos;
+    private TextView text_2_item_gastos;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,8 +46,8 @@ public class Gastos extends AppCompatActivity {
 
         lista_gastos = findViewById(R.id.list_gastos);
         btn_add_gastos = findViewById(R.id.btn_add_gastos);
-        edit_item_gastos = findViewById(R.id.edit_item_gastos);
-        edit_2_item_gastos = findViewById(R.id.edit_2_item_gastos);
+        text_item_gastos = findViewById(R.id.edit_item_gastos);
+        text_2_item_gastos = findViewById(R.id.edit_2_item_gastos);
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_gastos = new ArrayList<>();
@@ -58,6 +58,9 @@ public class Gastos extends AppCompatActivity {
 
         lista_gastos.setAdapter(adapter_gastos);
 
+        text_2_item_gastos.setText(sumatorioLista(itemList_gastos));
+
+        /*
         lista_gastos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -67,8 +70,9 @@ public class Gastos extends AppCompatActivity {
                 adapter_gastos.notifyDataSetChanged();
             }
         });
-
-        // Intentamos Modificar el contenido de una fila
+         */
+//-----------------------------------------------------------------------------------------------------------------------------
+        // Modificamos el contenido de una fila tras mantener pulsado un elemento en conteto
         lista_gastos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
@@ -77,14 +81,13 @@ public class Gastos extends AppCompatActivity {
                         getSystemService(LAYOUT_INFLATER_SERVICE);
                 View popupView = inflater.inflate(layout.popup, null);
 
-                // create the popup window
+                // Creamos la ventana del pop-up
                 int width = LinearLayout.LayoutParams.WRAP_CONTENT;
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-                // show the popup window
-                // which view you pass in doesn't matter, it is only used for the window tolken
+                // enseñamos la ventana del pop-up
                 popupWindow.showAtLocation(item, Gravity.CENTER, 0, 0);
                 
                 Button button = (Button) popupView.findViewById(R.id.btn_popup_aceptar);
@@ -110,22 +113,55 @@ public class Gastos extends AppCompatActivity {
             }
         });
 
+//-----------------------------------------------------------------------------------------------------------------------------
+
+        /* METODO ANTIGUO PARA AÑADIR UN ELEMENTO DESDE UN ANTIGUO CAMPO DE TEXTO INFERIOR
         btn_add_gastos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addItem(edit_item_gastos.getText().toString(),edit_2_item_gastos.getText().toString() );
             }
-        });
+        }); */
 
-        //Permite añadir un item a la lista desde el teclado
-        edit_item_gastos.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//-----------------------------------------------------------------------------------------------------------------------------
+
+        btn_add_gastos.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                addItem(edit_item_gastos.getText().toString(),edit_2_item_gastos.getText().toString() );
-                return true;
+            public void onClick(View view) {
+
+                View result = view;
+                LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                result = inflater.inflate(layout.popup_agregar_gastos, null);
+                Toast.makeText(Gastos.this, "El boton funciona wachos", Toast.LENGTH_SHORT).show();
+
+                // Creamos la ventana del pop-up
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // Esto nos permite que si clickamos fuera de la ventana del pop-up, esta desaparece
+                final PopupWindow popupWindow = new PopupWindow(result, width, height, focusable);
+
+                // enseñamos la ventana del pop-up
+                popupWindow.showAtLocation(result,Gravity.CENTER, 0, 0);
+
+                //Nos traemos los elementos de la ventana del pop up para utilizarlos aqui
+
+                EditText nombre = result.findViewById(id.text_popup_AgregarGasto_nombre_gasto);
+                EditText cantidad = result.findViewById(id.text_popup_AgregarGasto_cantidad);
+                Button btn_agregar_Coste = result.findViewById(id.btn_popup_agregarGasto_aceptar);
+
+                btn_agregar_Coste.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addItem(nombre.getText().toString(), cantidad.getText().toString());
+                        Toast.makeText(Gastos.this, "Gasto añadido correctamente", Toast.LENGTH_SHORT).show();
+                        popupWindow.dismiss();
+                    }
+                });
             }
         });
     }
+
+//-----------------------------------------------------------------------------------------------------------------------------
 
     //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento
     private void maybeRemoveItem(int pos) {
@@ -135,6 +171,7 @@ public class Gastos extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                text_2_item_gastos.setText(restaLista(itemList_gastos, pos));
                 itemList_gastos.remove(pos);
                 adapter_gastos.notifyDataSetChanged();
             }
@@ -149,12 +186,39 @@ public class Gastos extends AppCompatActivity {
         if (!item_text.isEmpty()){
             itemList_gastos.add(new item_gasto(item_text, item_text_coste));
             adapter_gastos.notifyDataSetChanged();
-            edit_item_gastos.getText().clear();
         }
+        text_2_item_gastos.setText(sumatorioLista(itemList_gastos));
         lista_gastos.smoothScrollToPosition(itemList_gastos.size()-1);
     }
 
     private void setItem (int position, String item_text, String item_text_coste) {
         itemList_gastos.set(position, new item_gasto(item_text, item_text_coste));
     }
+
+//-----------------------------------------------------------------------------------------------------------------------------
+
+    //Suma el coste de los elementos de la Lista
+    public String sumatorioLista (ArrayList<item_gasto> arrayList) {
+        int item_gastoss = 0;
+
+        for (int i = 0; i < arrayList.size(); i++){
+            item_gasto item_text = arrayList.get(i);
+            int coste = Integer.parseInt(item_text.getCoste());
+            item_gastoss += coste;
+        }
+        return Integer.toString(item_gastoss);
+    }
+
+    //Resta el coste cuando elementos de la lista son eliminados
+    public String restaLista (ArrayList<item_gasto> arrayList, int posicion){
+        int item_gastoss = Integer.parseInt(text_2_item_gastos.getText().toString());
+
+        item_gasto item_text_p = arrayList.get(posicion);
+        int coste_p = Integer.parseInt(item_text_p.getCoste());
+
+        item_gastoss -= coste_p;
+
+        return Integer.toString(item_gastoss);
+    }
+
 }
