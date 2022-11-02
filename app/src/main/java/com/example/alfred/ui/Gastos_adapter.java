@@ -27,7 +27,7 @@ import java.util.List;
 public class Gastos_adapter extends ArrayAdapter<item_gasto> {
     Button btn_gastos_item;
     TextView textView;
-    CheckBox checkBox;
+    TextView textView_gastos_item;
     public Gastos_adapter(@NonNull Context context, int resource, @NonNull List objects) {
         super(context,resource,objects);
     }
@@ -42,12 +42,12 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
             result = inflater.inflate(R.layout.item_gasto, null );
         }
 
-        CheckBox checkBox = (CheckBox) result.findViewById(R.id.checkbox_item_gasto);
         TextView textView = (TextView) result.findViewById(R.id.textView_precio_item_gastos);
+        TextView nombre = (TextView) result.findViewById(R.id.textview_item_gasto_nombre);
         Button button = result.findViewById(R.id.btn_item_gastos);
         item_gasto item_text = getItem(position);
 
-        checkBox.setText(item_text.getText());
+        nombre.setText(item_text.getText());
         textView.setText(item_text.getCoste());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,6 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
             }
         });
 
-        checkBox.setChecked(item_text.isChecked());
 
         return result;
     }

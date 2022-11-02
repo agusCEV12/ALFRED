@@ -8,8 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <CheckBox
-            android:id="@+id/checkbox_item_gasto"
+        <TextView
+            android:id="@+id/textview_item_gasto_nombre"
             android:layout_width="wrap_content"
             android:layout_height="?attr/listPreferredItemHeight"
             android:clickable="false"
