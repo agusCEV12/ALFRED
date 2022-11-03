@@ -7,14 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +24,12 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
     Button btn_gastos_item;
     TextView textView;
     TextView textView_gastos_item;
-    public Gastos_adapter(@NonNull Context context, int resource, @NonNull List objects) {
+    TextView tex_2_item_gastos;
+    String costeTotal;
+    private ArrayList<item_gasto> itemList_gastos;
+    public Gastos_adapter(@NonNull Context context, int resource, @NonNull List objects, TextView text_2_item_gastos) {
         super(context,resource,objects);
+        this.tex_2_item_gastos = text_2_item_gastos;
     }
 
     @NonNull
@@ -49,6 +49,7 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
 
         nombre.setText(item_text.getText());
         textView.setText(item_text.getCoste());
+        //metodo para eliminar el item al darle a "yes" en el cuadro de dialogo
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +60,7 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //((Gastos) getContext()).setCoste(restaLista( itemList_gastos,position,item_text));
                         remove(item_text);
                     }
                 });
@@ -71,7 +73,21 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
         return result;
     }
 
+    public String restaLista (ArrayList<item_gasto> arrayList, int posicion, item_gasto item_gasto){
+        int item_gastoss = 0;
 
+        for (int i = 0; i < arrayList.size(); i++){
+            item_gasto item_text = arrayList.get(i);
+            int coste = Integer.parseInt(item_text.getCoste());
+            item_gastoss += coste;
+        }
+
+        item_gasto text_item = arrayList.get(posicion);
+        int coste_p = Integer.parseInt(text_item.getCoste());
+        item_gastoss -= coste_p;
+
+        return Integer.toString(item_gastoss);
+    }
 
 
     /*

@@ -4,6 +4,7 @@ import static com.example.alfred.R.*;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class Gastos extends ToolbarActivity {
         itemList_gastos.add(new item_gasto("Compra", "55"));
         itemList_gastos.add(new item_gasto("Clases Padel","80"));
 
-        adapter_gastos = new Gastos_adapter(this, android.R.layout.simple_list_item_1, itemList_gastos);
+        adapter_gastos = new Gastos_adapter(this, android.R.layout.simple_list_item_1, itemList_gastos, text_2_item_gastos);
 
         lista_gastos.setAdapter(adapter_gastos);
 
@@ -154,6 +155,7 @@ public class Gastos extends ToolbarActivity {
                     public void onClick(View view) {
                         addItem(nombre.getText().toString(), cantidad.getText().toString());
                         Toast.makeText(Gastos.this, "Gasto añadido correctamente", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent();
                         popupWindow.dismiss();
                     }
                 });
@@ -163,22 +165,23 @@ public class Gastos extends ToolbarActivity {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-    //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento
-    private void maybeRemoveItem(int pos) {
+    //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento -> DESCACTUALIZADO <- SOLO INFORMATIVO
+    /*private void maybeRemoveItem(int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmación");
         builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemList_gastos.get(pos).getText()));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                text_2_item_gastos.setText(restaLista(itemList_gastos, pos));
-                itemList_gastos.remove(pos);
-                adapter_gastos.notifyDataSetChanged();
+                //text_2_item_gastos.setText(restaLista(itemList_gastos, pos));
+                Toast.makeText(Gastos.this, "Holi, el gasto es: " + restaLista(itemList_gastos, pos), Toast.LENGTH_SHORT).show();
+                //itemList_gastos.remove(pos);
+                //adapter_gastos.notifyDataSetChanged();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.create().show();
-    }
+    } */
 
     //Metodo para añadir un item a la lista y borrar el campo de texto
     private void addItem(String item_text, String item_text_coste ) {
@@ -217,8 +220,18 @@ public class Gastos extends ToolbarActivity {
         int coste_p = Integer.parseInt(item_text_p.getCoste());
 
         item_gastoss -= coste_p;
+        itemList_gastos.remove(posicion);
+        adapter_gastos.notifyDataSetChanged();
 
-        return Integer.toString(item_gastoss);
+        return text_2_item_gastos.getText().toString();
+    }
+
+    public String getCoste(){
+        return text_2_item_gastos.getText().toString();
+    }
+
+    public void setCoste (String coste){
+        text_2_item_gastos.setText(coste);
     }
 
 }
