@@ -32,6 +32,8 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
         this.tex_2_item_gastos = text_2_item_gastos;
     }
 
+
+    //Metodo Get View generico
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -60,7 +62,14 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //((Gastos) getContext()).setCoste(restaLista( itemList_gastos,position,item_text));
+
+                        //Este bloque recibe el Coste total de la lista y le resta el coste del item seleccionado
+                        int coste_actual = Integer.parseInt(item_text.getCoste());
+                        int Coste_total = Integer.parseInt(tex_2_item_gastos.getText().toString());
+                        Coste_total -= coste_actual;
+                        ((Gastos) getContext()).setCoste(Integer.toString(Coste_total));
+
+                        //Eliminar el item de la lista
                         remove(item_text);
                     }
                 });
@@ -73,28 +82,12 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
         return result;
     }
 
-    public String restaLista (ArrayList<item_gasto> arrayList, int posicion, item_gasto item_gasto){
-        int item_gastoss = 0;
-
-        for (int i = 0; i < arrayList.size(); i++){
-            item_gasto item_text = arrayList.get(i);
-            int coste = Integer.parseInt(item_text.getCoste());
-            item_gastoss += coste;
-        }
-
-        item_gasto text_item = arrayList.get(posicion);
-        int coste_p = Integer.parseInt(text_item.getCoste());
-        item_gastoss -= coste_p;
-
-        return Integer.toString(item_gastoss);
-    }
-
 
     /*
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        //
+
         View result = convertView;
         if (result == null){
             LayoutInflater inflater = LayoutInflater.from(getContext());
