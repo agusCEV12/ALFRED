@@ -99,6 +99,8 @@ public class Gastos extends ToolbarActivity {
                     public void onClick(View view) {
                         Toast.makeText(Gastos.this, "Datos Modificados correctamente", Toast.LENGTH_SHORT).show();
                         setItem(pos, nombre.getText().toString(),cantidad.getText().toString());
+
+                        text_2_item_gastos.setText(sumatorioLista(itemList_gastos));
                         popupWindow.dismiss();
                     }
                 });
@@ -212,18 +214,17 @@ public class Gastos extends ToolbarActivity {
         return Integer.toString(item_gastoss);
     }
 
-    //Resta el coste cuando elementos de la lista son eliminados
-    public String restaLista (ArrayList<item_gasto> arrayList, int posicion){
-        int item_gastoss = Integer.parseInt(text_2_item_gastos.getText().toString());
+    public String recalcularCoste(ArrayList<item_gasto> arrayList){
 
-        item_gasto item_text_p = arrayList.get(posicion);
-        int coste_p = Integer.parseInt(item_text_p.getCoste());
+        int item_gastoss = 0;
 
-        item_gastoss -= coste_p;
-        itemList_gastos.remove(posicion);
-        adapter_gastos.notifyDataSetChanged();
+        for (int i = 0; i < arrayList.size(); i++){
+            item_gasto item_text = arrayList.get(i);
+            int coste = Integer.parseInt(item_text.getCoste());
+            item_gastoss += coste;
+        }
 
-        return text_2_item_gastos.getText().toString();
+        return "a";
     }
 
     public String getCoste(){

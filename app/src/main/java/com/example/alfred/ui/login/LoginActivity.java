@@ -57,8 +57,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToHome(View view){
-        Intent intent = new Intent(this, RecoverPassActivity.class);
-        startActivity(intent);
+
+        //AQUI EL CODIGO PARA COMPROBAR LAS CREDENCIALES
+
     }
 }
 
