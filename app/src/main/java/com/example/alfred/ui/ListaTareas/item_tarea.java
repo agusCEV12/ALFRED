@@ -5,7 +5,7 @@ public class item_tarea {
     private String text;
     private boolean checked;
 
-    public item_tarea(final String text, final boolean checked) {
+    public item_tarea(final String text) {
         this.text = text;
         this.checked = checked;
     }
