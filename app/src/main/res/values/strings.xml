@@ -26,7 +26,13 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_compra">Lista de Compra</string>
+    <string name="menu_lista_tareas">Lista de tareas</string>
+    <string name="menu_tareas">Tareas</string>
+    <string name="menu_gastos">Gastos</string>
+    <string name="menu_perfil">Perfil</string>
+
+    <string name="title_activity_navigator_prueba">Navigator_prueba</string>
+    <string name="title_activity_prueba">Prueba</string>
 </resources>
