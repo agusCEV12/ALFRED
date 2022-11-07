@@ -23,7 +23,7 @@ public class TareasActivity extends ToolbarActivity {
 
     //Declaracion de variables
     private ArrayList<item_tarea> itemTareas;
-    //private TareasActivity_adapter adapter;
+    private Tareas_adapter adapter;
 
     private ListView lista_tareas;
     private Button btn_gregar_tarea;;
@@ -40,12 +40,12 @@ public class TareasActivity extends ToolbarActivity {
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemTareas = new ArrayList<>();
-        //itemTareas.add(new item_tarea("Patatas"));
-        //itemTareas.add(new item_tarea("Papel"));
+        itemTareas.add(new item_tarea("Patatas"));
+        itemTareas.add(new item_tarea("Papel"));
 
-        //adapter = new TareasActivity_adapter(this, android.R.layout.simple_list_item_1, itemTareas);
+        adapter = new Tareas_adapter(this, android.R.layout.simple_list_item_1, itemTareas);
 
-        //lista_tareas.setAdapter(adapter);
+        lista_tareas.setAdapter(adapter);
 
         lista_tareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,12 +66,12 @@ public class TareasActivity extends ToolbarActivity {
             }
         });
 
-        /*btn_gregar_tarea.setOnClickListener(new View.OnClickListener() {
+        btn_gregar_tarea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addItem();
             }
-        });*/
+        });
 
         //Permite añadir un item a la lista desde el teclado
         titulo_Tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -100,14 +100,14 @@ public class TareasActivity extends ToolbarActivity {
     }
 
     //Metodo para añadir un item a la lista y borrar el campo de texto
-    /*private void addItem() {
-        String item_text = Titulo.getText().toString();
+    private void addItem() {
+        String item_text = titulo_Tareas.getText().toString();
 
         if (!item_text.isEmpty()){
-            itemList.add(new item_compra(item_text));
+            itemTareas.add(new item_tarea(item_text));
             adapter.notifyDataSetChanged();
-            edit_item.getText().clear();
+            //titulo_Tareas.getText().clear();
         }
-        lista.smoothScrollToPosition(itemList.size()-1);
-    }*/
+        lista_tareas.smoothScrollToPosition(itemTareas.size()-1);
+    }
 }
