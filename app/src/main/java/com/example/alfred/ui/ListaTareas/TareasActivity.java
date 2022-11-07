@@ -21,39 +21,38 @@ import java.util.ArrayList;
 
 public class TareasActivity extends ToolbarActivity {
 
-    //Declaracion de variables
-    private ArrayList<item_tarea> itemTareas;
+    private ArrayList<item_tarea> itemList_tareas;
     private Tareas_adapter adapter;
 
     private ListView lista_tareas;
-    private Button btn_gregar_tarea;;
-    TextView titulo_Tareas;
+    private Button btn_add_tareas;
+    private EditText edit_item_tareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tareas);
 
-        lista_tareas = findViewById(R.id.lista_tareas_activity);
-        btn_gregar_tarea = findViewById(R.id.btn_agregar_tarea);
-        titulo_Tareas = findViewById(R.id.titulo_tareas);
+        lista_tareas = findViewById(R.id.list_tareas);
+        btn_add_tareas = findViewById(R.id.btn_add_tareas);
+        edit_item_tareas  = findViewById(R.id.edit_item_tareas);
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
-        itemTareas = new ArrayList<>();
-        itemTareas.add(new item_tarea("Patatas"));
-        itemTareas.add(new item_tarea("Papel"));
+        itemList_tareas = new ArrayList<>();
+        itemList_tareas.add(new item_tarea("Patatas"));
+        itemList_tareas.add(new item_tarea("Papel"));
 
-        adapter = new Tareas_adapter(this, android.R.layout.simple_list_item_1, itemTareas);
+        adapter = new Tareas_adapter(this, android.R.layout.simple_list_item_1, itemList_tareas);
 
         lista_tareas.setAdapter(adapter);
 
         lista_tareas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                item_tarea item = itemTareas.get(pos);
+                item_tarea item = itemList_tareas.get(pos);
                 boolean checked = item.isChecked();
-                itemTareas.get(pos).setChecked(!checked);
-                //adapter.notifyDataSetChanged();
+                itemList_tareas.get(pos).setChecked(!checked);
+                adapter.notifyDataSetChanged();
             }
         });
 
@@ -66,7 +65,7 @@ public class TareasActivity extends ToolbarActivity {
             }
         });
 
-        btn_gregar_tarea.setOnClickListener(new View.OnClickListener() {
+        btn_add_tareas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addItem();
@@ -74,10 +73,10 @@ public class TareasActivity extends ToolbarActivity {
         });
 
         //Permite añadir un item a la lista desde el teclado
-        titulo_Tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edit_item_tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                //addItem();
+                addItem();
                 return true;
             }
         });
@@ -87,12 +86,12 @@ public class TareasActivity extends ToolbarActivity {
     private void maybeRemoveItem(int pos) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmación");
-        builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemTareas.get(pos).getText()));
+        builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemList_tareas.get(pos).getText()));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                itemTareas.remove(pos);
-                //adapter.notifyDataSetChanged();
+                itemList_tareas.remove(pos);
+                adapter.notifyDataSetChanged();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, null);
@@ -101,13 +100,13 @@ public class TareasActivity extends ToolbarActivity {
 
     //Metodo para añadir un item a la lista y borrar el campo de texto
     private void addItem() {
-        String item_text = titulo_Tareas.getText().toString();
+        String item_text = edit_item_tareas.getText().toString();
 
         if (!item_text.isEmpty()){
-            itemTareas.add(new item_tarea(item_text));
+            itemList_tareas.add(new item_tarea(item_text));
             adapter.notifyDataSetChanged();
-            //titulo_Tareas.getText().clear();
+            edit_item_tareas.getText().clear();
         }
-        lista_tareas.smoothScrollToPosition(itemTareas.size()-1);
+        lista_tareas.smoothScrollToPosition(itemList_tareas.size()-1);
     }
 }
