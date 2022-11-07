@@ -28,7 +28,7 @@ public class Tareas_adapter extends ArrayAdapter<item_tarea> {
         View result = convertView;
         if (result == null){
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            result = inflater.inflate(R.layout.activity_tareas, null);
+            result = inflater.inflate(R.layout.item_tarea, null);
         }
 
         // Llamamos a los objetos que usaremos del xml de Tareas

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.Lista_compra;
 
 import java.util.Arrays;
@@ -57,6 +58,11 @@ public class RecoverPassActivity extends AppCompatActivity {
 
     public void goToGastos(View view) {
         Intent intent = new Intent(this, Gastos.class);
+        startActivity(intent);
+    }
+
+    public void goToTareas (View view) {
+        Intent intent = new Intent(this, TareasActivity.class);
         startActivity(intent);
     }
 
