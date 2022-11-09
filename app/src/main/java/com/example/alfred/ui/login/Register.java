@@ -1,23 +1,18 @@
 package com.example.alfred.ui.login;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.ToolbarActivity;
-import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,8 +23,8 @@ public class Register extends ToolbarActivity {
 
     RequestQueue requesQueue;
     //ponemos la direccion IP de nuestro ordenador
-   // private static final String URL1="http://192.168.0.14/alfred/save.php";
-    private static final String URL1="http://192.168.0.14/alfred/save.php";
+      private static final String URL1="http://192.168.0.14/alfred/save.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,21 +71,11 @@ public class Register extends ToolbarActivity {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(final String response) {
-                        Toast.makeText(getApplication(), "Registrado correctamente ", Toast.LENGTH_LONG).show();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(final VolleyError error) {
-                        Toast.makeText(getApplication(), "Algo ha pasado", Toast.LENGTH_LONG).show();
-                    }
-                }
+                response -> Toast.makeText(getApplication(), "Registrado correctamente ", Toast.LENGTH_LONG).show(),
+                error -> Toast.makeText(getApplication(), "Algo ha pasado", Toast.LENGTH_LONG).show()
         ){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", name);
                 params.put("email", mail);
@@ -105,5 +90,6 @@ public class Register extends ToolbarActivity {
     public void goToLogin (View view) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }
