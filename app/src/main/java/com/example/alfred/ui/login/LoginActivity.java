@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private String strUserName, strPassword;
     //URL del archivo php de nuestro LOGIN
     private static final String URL1="http://192.168.0.14/alfred/login.php";
-
+//PARA EL MERGE
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
