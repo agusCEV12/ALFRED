@@ -13,28 +13,18 @@
 
     <RelativeLayout
         android:id="@+id/edit_box_tareas"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/listPreferredItemHeight"
-        tools:ignore="MissingConstraints"
-        android:layout_alignParentBottom="true"
+        android:layout_width="59dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="352dp"
+        android:layout_marginBottom="4dp"
         android:background="#43000000"
+        android:paddingLeft="10px"
         android:paddingTop="5px"
-        android:paddingBottom="5px"
         android:paddingRight="10px"
-        android:paddingLeft="10px">
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text=""
-            android:id="@+id/edit_item_tareas"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/btn_add"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:imeOptions="actionDone"/>
+        android:paddingBottom="5px"
+        tools:ignore="MissingConstraints">
 
         <Button
             android:id="@+id/btn_add_tareas"
