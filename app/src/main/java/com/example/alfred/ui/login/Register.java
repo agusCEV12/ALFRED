@@ -37,11 +37,9 @@ public class Register extends ToolbarActivity {
 
         requesQueue = Volley.newRequestQueue(this);
 
-        name = findViewById(R.id.nameUser);
         mail = findViewById(R.id.mail);
         password1 = findViewById(R.id.password);
         password2 = findViewById(R.id.password2);
-        termsUse = findViewById(R.id.termsUse);
     }
 
     public void doRegistrer (View view) {

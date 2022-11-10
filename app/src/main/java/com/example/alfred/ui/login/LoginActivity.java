@@ -1,5 +1,6 @@
 package com.example.alfred.ui.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,14 +20,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userName, password;
     private Button btnLogin;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_logo);
 
-        userName = findViewById(R.id.et_username);
-        password = findViewById(R.id.et_password);
-       // loginButton = findViewById(R.id.btn_login);
+        userName = findViewById(R.id.editTextLogin);
+        password = findViewById(R.id.editTextPass);
+        btnLogin = findViewById(R.id.buttonLogin);
 
        /* loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
