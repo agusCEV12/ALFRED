@@ -1,6 +1,7 @@
 package com.example.alfred.ui.ListaTareas;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -38,6 +39,12 @@ public class Tareas_adapter extends ArrayAdapter<item_tarea> {
         item_tarea item_text = getItem(position);
         checkBox.setText(item_text.getText());
         checkBox.setChecked(item_text.isChecked());
+
+        if (checkBox.isChecked() == true){
+            result.setBackgroundColor(Color.GRAY);
+        } else {
+            result.setBackgroundColor(Color.WHITE);
+        }
 
         return result;
     }
