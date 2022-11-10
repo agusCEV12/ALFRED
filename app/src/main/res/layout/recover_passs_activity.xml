@@ -43,6 +43,13 @@
             android:layout_gravity="center_horizontal"
             android:text="Gastos"
             android:onClick="goToGastos"/>
+        <Button
+            android:id="@+id/btn_tareas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Tareas"
+            android:onClick="goToTareas"/>
 
     </LinearLayout>
 

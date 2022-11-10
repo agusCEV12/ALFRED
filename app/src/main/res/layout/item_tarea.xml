@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <CheckBox
-        android:id="@+id/item_compra"
+        android:id="@+id/checkbox_item_tarea"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
         android:text="CheckBox"
