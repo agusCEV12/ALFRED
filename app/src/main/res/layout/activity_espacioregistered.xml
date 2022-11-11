@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:paddingBottom="@dimen/activity_vertical_margin">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imageView4"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-1dp"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        app:srcCompat="#FFCCBC"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="-1dp" />
+        app:srcCompat="#FFCCBC" />
 
     <ImageButton
-        android:id="@+id/goToLogin1"
+        android:id="@+id/goToLogin2"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="#FFCCBC"
+        android:background="@color/MainColor"
         android:enabled="true"
         android:onClick="goToLogin"
         android:scaleType="fitCenter"
@@ -34,7 +33,7 @@
         app:srcCompat="@drawable/atras" />
 
     <TextView
-        android:id="@+id/textTopSpace1"
+        android:id="@+id/textTopSpace2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
@@ -43,13 +42,13 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.025" />
 
     <ImageButton
-        android:id="@+id/buttonEspacio"
+        android:id="@+id/buttonEspacio2"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -62,28 +61,28 @@
         app:srcCompat="@drawable/coworking" />
 
     <TextView
-        android:id="@+id/textEspacioRegistered"
+        android:id="@+id/textEspacioRegistered2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="CREAR UN ESPACIO"
-        app:layout_constraintBottom_toTopOf="@+id/buttonEspacio"
+        android:text="PISO COMPARTIDO"
+        app:layout_constraintBottom_toTopOf="@+id/buttonEspacio2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTopSpace1"
+        app:layout_constraintTop_toBottomOf="@+id/textTopSpace2"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
-        android:id="@+id/imgButMenu"
+        android:id="@+id/imgButMenu2"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:background="#FFCCBC"
+        android:background="@color/MainColor"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toEndOf="@+id/goToLogin1"
+        app:layout_constraintStart_toEndOf="@+id/goToLogin2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/menu" />
