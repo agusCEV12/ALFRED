@@ -35,7 +35,7 @@ public class Lista_compra extends AppCompatActivity {
 
         lista = findViewById(id.list);
         btn_add = findViewById(id.btn_add);
-        edit_item = findViewById(id.edit_item);
+        //edit_item = findViewById(id.edit_item);
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList = new ArrayList<>();
