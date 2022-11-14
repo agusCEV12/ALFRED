@@ -10,7 +10,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/goToLogin2"
+        android:id="@+id/btn_Back"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@color/white"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.03" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/img_btn_espacio"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="150dp"
         android:layout_height="150dp"

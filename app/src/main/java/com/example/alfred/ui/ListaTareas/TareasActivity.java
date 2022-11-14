@@ -20,14 +20,13 @@ import android.widget.Toast;
 import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.Lista_compra_adapter;
-import com.example.alfred.ui.ToolbarActivity;
 import com.example.alfred.ui.item_compra;
 import com.example.alfred.ui.item_gasto;
 
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
-public class TareasActivity extends ToolbarActivity {
+public class TareasActivity extends AppCompatActivity {
 
     private ArrayList<item_tarea> itemList_tareas;
     private Tareas_adapter adapter;

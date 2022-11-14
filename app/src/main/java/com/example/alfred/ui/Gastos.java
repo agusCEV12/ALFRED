@@ -28,7 +28,7 @@ import com.example.alfred.R;
 
 import java.util.ArrayList;
 
-public class Gastos extends ToolbarActivity {
+public class Gastos extends AppCompatActivity {
 
     private ArrayList<item_gasto> itemList_gastos;
     private Gastos_adapter adapter_gastos;

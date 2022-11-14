@@ -92,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             requestQueue.add(request);
 
+            Intent intent = new Intent(this, EspacioActivity.class);
+            startActivity(intent);
         }
     }
 

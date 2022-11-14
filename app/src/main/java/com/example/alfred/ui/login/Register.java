@@ -2,6 +2,7 @@ package com.example.alfred.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -12,12 +13,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
-import com.example.alfred.ui.ToolbarActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Register extends ToolbarActivity {
+public class Register extends AppCompatActivity {
     EditText name, mail, password1, password2;
     RadioButton termsUse;
 

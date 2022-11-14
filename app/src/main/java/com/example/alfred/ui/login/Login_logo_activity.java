@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.HomeActivity;
 import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 public class Login_logo_activity  extends AppCompatActivity {
