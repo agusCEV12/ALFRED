@@ -2,6 +2,8 @@ package com.example.alfred.ui;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +32,13 @@ public class Lista_compra_adapter extends ArrayAdapter<item_compra> {
         CheckBox checkBox = (CheckBox) result.findViewById(R.id.item_compra);
         item_compra item_text = getItem(position);
         checkBox.setText(item_text.getText());
-
         checkBox.setChecked(item_text.isChecked());
+
+        if (checkBox.isChecked() == true){
+            result.setBackgroundColor(Color.GRAY);
+        } else {
+            result.setBackgroundColor(Color.WHITE);
+        }
 
         return result;
     }

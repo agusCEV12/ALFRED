@@ -1,6 +1,7 @@
 package com.example.alfred.ui.login;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,9 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.EspaciosRegistered;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 public class EspacioActivity extends AppCompatActivity {
 
@@ -37,9 +41,16 @@ public class EspacioActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //imageButton = findViewById(R.id.img_btn_espacio);
-        //imageButton2 = findViewById(R.id.btn_Back);
+        imageButton = findViewById(R.id.img_btn_espacio);
+        imageButton2 = findViewById(R.id.btn_Back);
 
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), SalaPrincipal.class);
+                startActivity(intent);
+            }
+        });
         /*imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

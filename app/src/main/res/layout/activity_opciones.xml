@@ -10,7 +10,7 @@
     android:paddingBottom="16dp">
 
     <Button
-        android:id="@+id/buttonTarea6"
+        android:id="@+id/btn_salas_gastos"
         android:layout_width="356dp"
         android:layout_height="40dp"
         android:background="@color/white"
@@ -22,7 +22,8 @@
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.055"
+        android:onClick="goToGastos"/>
 
     <TextView
         android:id="@+id/textView6"
@@ -36,7 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTarea5"
+        app:layout_constraintTop_toBottomOf="@+id/btn_salas_compra"
         app:layout_constraintVertical_bias="0.071" />
 
     <TextView
@@ -142,7 +143,7 @@
         app:srcCompat="@drawable/atras" />
 
     <Button
-        android:id="@+id/buttonTarea"
+        android:id="@+id/btn_salas_tarea"
         android:layout_width="110dp"
         android:layout_height="45dp"
         android:background="@color/white"
@@ -154,7 +155,8 @@
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTopSpace3"
-        app:layout_constraintVertical_bias="0.150" />
+        app:layout_constraintVertical_bias="0.150"
+        android:onClick="goToTareas"/>
 
     <Button
         android:id="@+id/buttonTarea2"
@@ -187,7 +189,7 @@
         app:layout_constraintVertical_bias="0.150" />
 
     <Button
-        android:id="@+id/buttonTarea5"
+        android:id="@+id/btn_salas_compra"
         android:layout_width="356dp"
         android:layout_height="40dp"
         android:background="@color/white"
@@ -199,7 +201,8 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.039"
+        android:onClick="goToCompras"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -209,7 +212,7 @@
         android:text="TAREAS POR SALA"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonTarea"
+        app:layout_constraintBottom_toTopOf="@+id/btn_salas_tarea"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.020"
         app:layout_constraintStart_toStartOf="parent"

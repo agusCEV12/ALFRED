@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     password.setText("");
                     //Mandamos a la actividad de Home
                     Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
                 }

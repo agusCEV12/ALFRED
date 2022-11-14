@@ -6,55 +6,64 @@ import android.content.DialogInterface;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.alfred.R;
+import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.ListaTareas.Tareas_adapter;
+import com.example.alfred.ui.ListaTareas.item_tarea;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class Lista_compra extends AppCompatActivity {
 
-    private ArrayList<item_compra> itemList;
+    private ArrayList<item_compra> itemList_compra;
     private Lista_compra_adapter adapter;
 
-    private ListView lista;
-    private Button btn_add;
-    private EditText edit_item;
+    private ListView lista_compra;
+    private FloatingActionButton btn_add_compra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_lista_compra);
 
-        lista = findViewById(id.list);
-        btn_add = findViewById(id.btn_add);
-        //edit_item = findViewById(id.edit_item);
+        lista_compra = findViewById(id.lista_compra);
+        btn_add_compra = findViewById(id.btn_add_compra);
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
-        itemList = new ArrayList<>();
-        itemList.add(new item_compra("Patatas"));
-        itemList.add(new item_compra("Papel"));
+        itemList_compra = new ArrayList<>();
+        itemList_compra.add(new item_compra("Recoger el salon"));
+        itemList_compra.add(new item_compra("lavar los platos"));
 
-        adapter = new Lista_compra_adapter(this, android.R.layout.simple_list_item_1, itemList);
+        adapter = new Lista_compra_adapter(this, android.R.layout.simple_list_item_1, itemList_compra);
 
-        lista.setAdapter(adapter);
+        lista_compra.setAdapter(adapter);
 
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lista_compra.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-                item_compra item = itemList.get(pos);
+                item_compra item = itemList_compra.get(pos);
                 boolean checked = item.isChecked();
-                itemList.get(pos).setChecked(!checked);
+                itemList_compra.get(pos).setChecked(!checked);
                 adapter.notifyDataSetChanged();
             }
         });
 
         // Borramos el item de la lista que mantengamos presionado
-        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lista_compra.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
                 maybeRemoveItem(pos);
@@ -62,32 +71,57 @@ public class Lista_compra extends AppCompatActivity {
             }
         });
 
-        btn_add.setOnClickListener(new View.OnClickListener() {
+        btn_add_compra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addItem();
+                View result = view;
+                LayoutInflater inflater = (LayoutInflater)
+                        getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = inflater.inflate(layout.popup_add_compra, null);
+
+                // Creamos la ventana del pop-up
+                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                boolean focusable = true; // lets taps outside the popup also dismiss it
+                final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+                // enseñamos la ventana del pop-up
+                popupWindow.showAtLocation(result, Gravity.CENTER, 0, 0);
+
+                Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
+                EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Lista_compra.this, "Compra agregada correctamente", Toast.LENGTH_SHORT).show();
+                        addItem(nombre.getText().toString());
+                        popupWindow.dismiss();
+                    }
+                });
             }
         });
+    }
 
-        //Permite añadir un item a la lista desde el teclado
-        edit_item.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+    //Permite añadir un item a la lista desde el teclado
+        /*edit_item_tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 addItem();
                 return true;
             }
         });
-    }
+    }*/
 
     //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento
-    private void maybeRemoveItem(int pos) {
+    private void maybeRemoveItem ( int pos){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmación");
-        builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemList.get(pos).getText()));
+        builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemList_compra.get(pos).getText()));
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                itemList.remove(pos);
+                itemList_compra.remove(pos);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -96,14 +130,16 @@ public class Lista_compra extends AppCompatActivity {
     }
 
     //Metodo para añadir un item a la lista y borrar el campo de texto
-    private void addItem() {
-        String item_text = edit_item.getText().toString();
+    private void addItem (String compra){
 
-        if (!item_text.isEmpty()){
-            itemList.add(new item_compra(item_text));
+        if (!compra.isEmpty()) {
+            itemList_compra.add(new item_compra(compra));
             adapter.notifyDataSetChanged();
-            edit_item.getText().clear();
         }
-        lista.smoothScrollToPosition(itemList.size()-1);
+        lista_compra.smoothScrollToPosition(itemList_compra.size() - 1);
+    }
+
+    private void setItem ( int position, String item_text){
+        itemList_compra.set(position, new item_compra(item_text));
     }
 }
