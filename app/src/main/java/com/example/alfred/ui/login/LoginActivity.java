@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             StringRequest request = new StringRequest(Request.Method.POST, URL1, response -> {
                 progressDialog.dismiss();
 
+                //sdf
                 if (response.equalsIgnoreCase("Login Correcto")) {
                     userName.setText("");
                     password.setText("");
