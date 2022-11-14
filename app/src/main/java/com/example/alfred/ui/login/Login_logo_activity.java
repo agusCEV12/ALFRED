@@ -3,13 +3,11 @@ package com.example.alfred.ui.login;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.alfred.R;
-import com.example.alfred.ui.HomeActivity;
-import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 public class Login_logo_activity  extends AppCompatActivity {
 
@@ -32,6 +30,11 @@ public class Login_logo_activity  extends AppCompatActivity {
 
     public  void GotoRegister(View view){
         Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+
+    public  void GotoEspacio(View view){
+        Intent intent = new Intent(this, EspacioActivity.class);
         startActivity(intent);
     }
 }

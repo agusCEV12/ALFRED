@@ -4,9 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
-import com.example.alfred.ui.HomeActivity;
 import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 
 import java.util.HashMap;
@@ -82,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
                     userName.setText("");
                     password.setText("");
                     //Mandamos a la actividad de Home
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this, response, Toast.LENGTH_SHORT).show();

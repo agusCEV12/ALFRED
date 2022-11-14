@@ -1,11 +1,10 @@
 package com.example.alfred.ui.ListaTareas;
 
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,17 +13,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
-import com.example.alfred.ui.Gastos;
-import com.example.alfred.ui.Lista_compra_adapter;
-import com.example.alfred.ui.item_compra;
-import com.example.alfred.ui.item_gasto;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class TareasActivity extends AppCompatActivity {
 

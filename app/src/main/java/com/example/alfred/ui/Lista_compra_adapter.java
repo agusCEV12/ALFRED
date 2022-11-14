@@ -1,7 +1,7 @@
 package com.example.alfred.ui;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import com.example.alfred.R;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class Lista_compra_adapter extends ArrayAdapter<item_compra> {
     public Lista_compra_adapter(@NonNull Context context, int resource, @NonNull List objects) {

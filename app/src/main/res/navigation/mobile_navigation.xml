@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation2"
-    app:startDestination="@+id/nav_home">
-
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.alfred.ui.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_lista_compra"
-        android:name="com.example.alfred.ui.ui.gallery.GalleryFragment"
-        android:label="@string/menu_compra"
-        tools:layout="@layout/activity_lista_compra" />
-
-    <fragment
-        android:id="@+id/nav_lista_tareas"
-        android:name="com.example.alfred.ui.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_lista_tareas"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_tareas"
-        android:name="com.example.alfred.ui.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_tareas"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_gastos"
-        android:name="com.example.alfred.ui.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_gastos"
-        tools:layout="@layout/activity_gastos" />
-
-    <fragment
-        android:id="@+id/nav_perfil"
-        android:name="com.example.alfred.ui.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_perfil"
-        tools:layout="@layout/activity_lista_compra"/>
+    android:id="@+id/mobile_navigation">
 
 </navigation>

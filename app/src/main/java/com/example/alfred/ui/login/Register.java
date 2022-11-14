@@ -2,9 +2,10 @@ package com.example.alfred.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -21,6 +22,8 @@ public class Register extends AppCompatActivity {
     EditText name, mail, password1, password2;
     RadioButton termsUse;
 
+    ImageButton imageButton;
+
     RequestQueue requesQueue;
     //ponemos la direccion IP de nuestro ordenador
       private static final String URL1="http://192.168.0.14/alfred/save.php";
@@ -35,6 +38,14 @@ public class Register extends AppCompatActivity {
         mail = findViewById(R.id.mail);
         password1 = findViewById(R.id.password);
         password2 = findViewById(R.id.password2);
+
+        imageButton = findViewById(R.id.goToLogin);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Register.this.finish();;
+            }
+        });
     }
 
     public void doRegistrer (View view) {

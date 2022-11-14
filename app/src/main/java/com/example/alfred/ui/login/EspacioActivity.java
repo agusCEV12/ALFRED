@@ -2,7 +2,14 @@ package com.example.alfred.ui.login;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -12,20 +19,44 @@ public class EspacioActivity extends AppCompatActivity {
 
     ImageButton imageButton;
     ImageButton imageButton2;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espacio);
 
-        imageButton = findViewById(R.id.img_btn_espacio);
-        imageButton2 = findViewById(R.id.btn_Back);
+        drawerLayout = findViewById(R.id.main_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imageButton2.setOnClickListener(new View.OnClickListener() {
+        //imageButton = findViewById(R.id.img_btn_espacio);
+        //imageButton2 = findViewById(R.id.btn_Back);
+
+        /*imageButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EspacioActivity.this.finish();
             }
-        });
+        });*/
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        actionBarDrawerToggle.onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
     }
 }
