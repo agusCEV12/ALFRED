@@ -1,11 +1,14 @@
 package com.example.alfred.ui.login;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -23,10 +26,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText userName, password;
     private String strUserName, strPassword;
+    ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
     private static final String URL1="http://192.168.0.14/alfred/login.php";
 
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,14 @@ public class LoginActivity extends AppCompatActivity {
 
         userName = findViewById(R.id.et_username);
         password = findViewById(R.id.et_password);
+
+        imageButton = findViewById(R.id.buttonBack);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginActivity.this.finish();
+            }
+        });
 
     }
 
