@@ -65,10 +65,6 @@ public class Register extends AppCompatActivity {
         } else if (passw1.isEmpty()) {
             Toast.makeText(getApplication(), "El campo de la contraseña esta vacio", Toast.LENGTH_LONG).show();
         }else if (passw1.equals(passw2)) {
-            //volver al HOME
-            //Intent intent = new Intent(this, LoginActivity.class);
-            //startActivity(intent);
-            //Toast.makeText(getApplication(), "Registrado correctamente", Toast.LENGTH_LONG).show();
             createUser(nameUser, mailUser, passw1);
         }else {
             Toast.makeText(getApplication(), "Las contraseñas no son iguales", Toast.LENGTH_LONG).show();
