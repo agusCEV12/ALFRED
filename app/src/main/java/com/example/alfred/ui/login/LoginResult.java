@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
  * Authentication result : success (user details) or error message.
  */
 class LoginResult {
-    @Nullable
-    private LoggedInUserView success;
+    //@Nullable
+    /*private LoggedInUserView success;
     @Nullable
     private Integer error;
 
@@ -27,5 +27,5 @@ class LoginResult {
     @Nullable
     Integer getError() {
         return error;
-    }
+    }   */
 }

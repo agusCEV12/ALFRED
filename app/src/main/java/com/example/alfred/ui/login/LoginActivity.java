@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,7 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
-import com.example.alfred.ui.HomeActivity;
+//import com.example.alfred.ui.HomeActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,8 +32,6 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
     private static final String URL2="http://192.168.0.14/alfred/login.php";
-
-
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -60,12 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-
-    public void goToForgotPassword (View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-    }
-
     public void goToHome (View view) {
         if(userName.getText().toString().equals("")){
             Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -90,8 +84,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.equalsIgnoreCase("Login Correcto")){
                         userName.setText("");
                         password.setText("");
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
+                        //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        //startActivity(intent);
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -99,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     else{
                         Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     }
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, EspacioActivity.class);
                     startActivity(intent);
                 }
             },new Response.ErrorListener(){
