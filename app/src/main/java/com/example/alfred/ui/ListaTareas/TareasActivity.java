@@ -1,11 +1,19 @@
 package com.example.alfred.ui.ListaTareas;
 
 import android.content.DialogInterface;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,16 +24,24 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.Lista_compra;
 
 import java.util.ArrayList;
 
-public class TareasActivity extends AppCompatActivity {
+public class TareasActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ArrayList<item_tarea> itemList_tareas;
     private Tareas_adapter adapter;
 
     private ListView lista_tareas;
     private Button btn_add_tareas;
+
+    // Variables para el menu de navegacion lateral
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    ListView lista_menu_tareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +55,25 @@ public class TareasActivity extends AppCompatActivity {
         itemList_tareas = new ArrayList<>();
         itemList_tareas.add(new item_tarea("Recoger el salon"));
         itemList_tareas.add(new item_tarea("lavar los platos"));
+        itemList_tareas.add(new item_tarea("Limpiar ventanas"));
+        itemList_tareas.add(new item_tarea("Barrer el patio"));
+        itemList_tareas.add(new item_tarea("Arreglar grifo"));
+        itemList_tareas.add(new item_tarea("Mover la mesa"));
+
+        // localizamos el drawer menu, y lo mostramos
+        drawerLayout = findViewById(R.id.main_layout_tareas);
+        lista_menu_tareas = findViewById(R.id.lista_menu_tareas);   //Esto es el listView en si para poder reconocer el item
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lista_menu_tareas.setOnItemClickListener(this); //Para poder reconocer el item de la lista que estamos clickando
+
 
         adapter = new Tareas_adapter(this, android.R.layout.simple_list_item_1, itemList_tareas);
 
@@ -134,4 +169,43 @@ public class TareasActivity extends AppCompatActivity {
         private void setItem ( int position, String item_text){
             itemList_tareas.set(position, new item_tarea(item_text));
         }
+
+
+    //Bloque de Metodos del Menu -------------------------------------------------------------------
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        actionBarDrawerToggle.onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+                break;
+            case 1:
+                Intent intent1 = new Intent(this, Lista_compra.class);
+                startActivity(intent1);
+                break;
+            case 2:
+                recreate();
+                break;
+            case 3:
+                Intent intent2 = new Intent(this, Gastos.class);
+                startActivity(intent2);
+                break;
+            default:
+                break;
+        }
+    }
+    // ---------------------------------------------------------------------------------------------
     }

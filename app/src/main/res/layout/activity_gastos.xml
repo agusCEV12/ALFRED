@@ -101,6 +101,7 @@
       </RelativeLayout>
 
   <ListView
+      android:id="@+id/lista_menu_gastos"
       android:layout_width="240dp"
       android:layout_height="match_parent"
       android:background="@color/MainColor"

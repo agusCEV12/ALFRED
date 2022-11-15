@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -27,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.ListaTareas.Tareas_adapter;
 import com.example.alfred.ui.ListaTareas.item_tarea;
@@ -34,7 +36,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class Lista_compra extends AppCompatActivity {
+public class Lista_compra extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ArrayList<item_compra> itemList_compra;
     private Lista_compra_adapter adapter;
@@ -46,6 +48,8 @@ public class Lista_compra extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
+    ListView lista_menu_compra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +60,16 @@ public class Lista_compra extends AppCompatActivity {
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_compra = new ArrayList<>();
-        itemList_compra.add(new item_compra("Recoger el salon"));
-        itemList_compra.add(new item_compra("lavar los platos"));
+        itemList_compra.add(new item_compra("Papel de cocina"));
+        itemList_compra.add(new item_compra("Pan"));
+        itemList_compra.add(new item_compra("Detergente"));
+        itemList_compra.add(new item_compra("Tomates"));
+        itemList_compra.add(new item_compra("Cebolla"));
+        itemList_compra.add(new item_compra("Carne Picada"));
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(id.main_layout_Compra);
+        lista_menu_compra = findViewById(R.id.lista_menu_compra);   //Esto es el listView en si para poder reconocer el item
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -69,6 +78,8 @@ public class Lista_compra extends AppCompatActivity {
         );
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lista_menu_compra.setOnItemClickListener(this); //Para poder reconocer el item de la lista que estamos clickando
 
         adapter = new Lista_compra_adapter(this, android.R.layout.simple_list_item_1, itemList_compra);
 
@@ -165,6 +176,9 @@ public class Lista_compra extends AppCompatActivity {
         itemList_compra.set(position, new item_compra(item_text));
     }
 
+
+    //Bloque de Metodos del Menu -------------------------------------------------------------------
+
     @Override
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         actionBarDrawerToggle.onOptionsItemSelected(item);
@@ -176,4 +190,28 @@ public class Lista_compra extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+                break;
+            case 1:
+                recreate();
+                break;
+            case 2:
+                Intent intent1 = new Intent(this, TareasActivity.class);
+                startActivity(intent1);
+                break;
+            case 3:
+                Intent intent2 = new Intent(this, Gastos.class);
+                startActivity(intent2);
+                break;
+            default:
+                break;
+        }
+    }
+    // ---------------------------------------------------------------------------------------------
 }

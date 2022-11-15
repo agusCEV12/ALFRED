@@ -28,10 +28,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.ListaTareas.TareasActivity;
 
 import java.util.ArrayList;
 
-public class Gastos extends AppCompatActivity {
+public class Gastos extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ArrayList<item_gasto> itemList_gastos;
     private Gastos_adapter adapter_gastos;
@@ -45,6 +47,7 @@ public class Gastos extends AppCompatActivity {
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    ListView lista_menu_gastos;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -59,6 +62,7 @@ public class Gastos extends AppCompatActivity {
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(id.main_layout_Gastos);
+        lista_menu_gastos = findViewById(R.id.lista_menu_gastos);   //Esto es el listView en si para poder reconocer el item
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
@@ -67,6 +71,8 @@ public class Gastos extends AppCompatActivity {
         );
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lista_menu_gastos.setOnItemClickListener(this); //Para poder reconocer el item de la lista que estamos clickando
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_gastos = new ArrayList<>();
@@ -236,7 +242,8 @@ public class Gastos extends AppCompatActivity {
     }
 
 
-    // Los otros dos metodos del menu para q se despliegue y podamos hacer click en los componentes
+    //Bloque de Metodos del Menu -------------------------------------------------------------------
+
     @Override
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         actionBarDrawerToggle.onOptionsItemSelected(item);
@@ -248,5 +255,29 @@ public class Gastos extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
     }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+                break;
+            case 1:
+                Intent intent1 = new Intent(this, Lista_compra.class);
+                startActivity(intent1);
+                break;
+            case 2:
+                Intent intent2 = new Intent(this, TareasActivity.class);
+                startActivity(intent2);
+                break;
+            case 3:
+                recreate();
+                break;
+            default:
+                break;
+        }
+    }
+    // ---------------------------------------------------------------------------------------------
 
 }
