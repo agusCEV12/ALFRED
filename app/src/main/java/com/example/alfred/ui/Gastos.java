@@ -4,11 +4,18 @@ import static com.example.alfred.R.*;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,6 +42,10 @@ public class Gastos extends AppCompatActivity {
     private TextView text_item_gastos;
     private TextView text_2_item_gastos;
 
+    // Variables para el menu de navegacion lateral
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,17 @@ public class Gastos extends AppCompatActivity {
         btn_add_gastos = findViewById(R.id.btn_add_gastos);
         text_item_gastos = findViewById(R.id.edit_item_gastos);
         text_2_item_gastos = findViewById(R.id.edit_2_item_gastos);
+
+        // localizamos el drawer menu, y lo mostramos
+        drawerLayout = findViewById(id.main_layout_Gastos);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_gastos = new ArrayList<>();
@@ -163,24 +185,6 @@ public class Gastos extends AppCompatActivity {
 
 //-----------------------------------------------------------------------------------------------------------------------------
 
-    //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento -> DESCACTUALIZADO <- SOLO INFORMATIVO
-    /*private void maybeRemoveItem(int pos) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Confirmación");
-        builder.setMessage(String.format("Seguro que quieres eliminar \'%1$s\' ?", itemList_gastos.get(pos).getText()));
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //text_2_item_gastos.setText(restaLista(itemList_gastos, pos));
-                Toast.makeText(Gastos.this, "Holi, el gasto es: " + restaLista(itemList_gastos, pos), Toast.LENGTH_SHORT).show();
-                //itemList_gastos.remove(pos);
-                //adapter_gastos.notifyDataSetChanged();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, null);
-        builder.create().show();
-    } */
-
     //Metodo para añadir un item a la lista y borrar el campo de texto
     private void addItem(String item_text, String item_text_coste ) {
 
@@ -229,6 +233,20 @@ public class Gastos extends AppCompatActivity {
 
     public void setCoste (String coste){
         text_2_item_gastos.setText(coste);
+    }
+
+
+    // Los otros dos metodos del menu para q se despliegue y podamos hacer click en los componentes
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        actionBarDrawerToggle.onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
     }
 
 }

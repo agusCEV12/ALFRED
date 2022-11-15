@@ -27,17 +27,13 @@
     <string name="action_settings">Settings</string>
 
     <string-array name="pantallas">
+        <item>Inicio</item>
         <item>Lista Compra</item>
         <item>Lista Tareas</item>
+        <item>Lista Gastos</item>
+        <item>Mi cuenta</item>
+        <item>Cerrar Sesion</item>
     </string-array>
-
-    <!--
-    <string name="menu_home">Inicio</string>
-    <string name="menu_compra">Lista de Compra</string>
-    <string name="menu_lista_tareas">Lista de tareas</string>
-    <string name="menu_tareas">Tareas</string>
-    <string name="menu_gastos">Gastos</string>
-    <string name="menu_perfil">Perfil</string> -->
 
     <string name="title_activity_navigator_prueba">Navigator_prueba</string>
     <string name="title_activity_prueba">Prueba</string>

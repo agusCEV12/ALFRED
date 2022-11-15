@@ -3,12 +3,19 @@ package com.example.alfred.ui;
 import static com.example.alfred.R.*;
 
 import android.content.DialogInterface;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,6 +42,10 @@ public class Lista_compra extends AppCompatActivity {
     private ListView lista_compra;
     private FloatingActionButton btn_add_compra;
 
+    // Variables para el menu de navegacion lateral
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +58,17 @@ public class Lista_compra extends AppCompatActivity {
         itemList_compra = new ArrayList<>();
         itemList_compra.add(new item_compra("Recoger el salon"));
         itemList_compra.add(new item_compra("lavar los platos"));
+
+        // localizamos el drawer menu, y lo mostramos
+        drawerLayout = findViewById(id.main_layout_Compra);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         adapter = new Lista_compra_adapter(this, android.R.layout.simple_list_item_1, itemList_compra);
 
@@ -141,5 +163,17 @@ public class Lista_compra extends AppCompatActivity {
 
     private void setItem ( int position, String item_text){
         itemList_compra.set(position, new item_compra(item_text));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        actionBarDrawerToggle.onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
     }
 }

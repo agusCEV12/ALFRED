@@ -22,7 +22,6 @@ import com.example.alfred.ui.recovery_pass.RecoverPassActivity;
 public class EspacioActivity extends AppCompatActivity {
 
     ImageButton imageButton;
-    ImageButton imageButton2;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -42,7 +41,6 @@ public class EspacioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageButton = findViewById(R.id.img_btn_espacio);
-        imageButton2 = findViewById(R.id.btn_Back);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,12 +49,6 @@ public class EspacioActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EspacioActivity.this.finish();
-            }
-        });*/
     }
 
     @Override
