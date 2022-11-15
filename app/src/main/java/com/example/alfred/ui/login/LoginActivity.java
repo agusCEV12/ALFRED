@@ -51,8 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
-
+    //hj
     // navegacion pantalla formulario
     public void goToRegister (View view) {
         Intent intent = new Intent(this, Register.class);
