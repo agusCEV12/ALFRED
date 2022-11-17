@@ -163,7 +163,7 @@ public class Gastos extends AppCompatActivity implements AdapterView.OnItemClick
                 Toast.makeText(Gastos.this, "El boton funciona wachos", Toast.LENGTH_SHORT).show();
 
                 // Creamos la ventana del pop-up
-                int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                int width = 700;
                 int height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 boolean focusable = true; // Esto nos permite que si clickamos fuera de la ventana del pop-up, esta desaparece
                 final PopupWindow popupWindow = new PopupWindow(result, width, height, focusable);

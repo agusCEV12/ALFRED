@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private String strUserName, strPassword;
     ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
-    private static final String URL2="http://192.168.0.14/alfred/login.php";
+    //private static final String URL2="http://192.168.0.14/alfred/login.php";
+    private static  final String URL2 ="https://appsonlinealfred.000webhostapp.com/config.php?DB_SERVER=localhost&DB_USERNAME=id19860485_appsonlinealfred&DB_PASSWORD=Pq0/r~6ymGng<9eL&DB_NAME=id19860485_alfred";
 
     @SuppressLint("WrongViewCast")
     @Override

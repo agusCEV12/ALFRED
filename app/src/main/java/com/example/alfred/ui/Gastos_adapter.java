@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class Gastos_adapter extends ArrayAdapter<item_gasto> {
 
         TextView textView = (TextView) result.findViewById(R.id.textView_precio_item_gastos);
         TextView nombre = (TextView) result.findViewById(R.id.textview_item_gasto_nombre);
-        Button button = result.findViewById(R.id.btn_item_gastos);
+        ImageButton button = result.findViewById(R.id.btn_item_gastos);
         item_gasto item_text = getItem(position);
 
         nombre.setText(item_text.getText());

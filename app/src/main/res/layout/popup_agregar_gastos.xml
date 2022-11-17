@@ -31,21 +31,13 @@
             android:inputType="number"
             android:textAlignment="center" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="50px"
-            android:layout_gravity="center_horizontal">
-
             <Button
                 android:id="@+id/btn_popup_agregarGasto_aceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Agregar" />
-
-        </LinearLayout>
+                android:text="Agregar"
+                android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
 
