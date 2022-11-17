@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -42,7 +43,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
     private Lista_compra_adapter adapter;
 
     private ListView lista_compra;
-    private FloatingActionButton btn_add_compra;
+    private ImageButton btn_add_compra;
 
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -36,7 +37,7 @@ public class TareasActivity extends AppCompatActivity implements AdapterView.OnI
     private Tareas_adapter adapter;
 
     private ListView lista_tareas;
-    private Button btn_add_tareas;
+    private ImageButton btn_add_tareas;
 
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;

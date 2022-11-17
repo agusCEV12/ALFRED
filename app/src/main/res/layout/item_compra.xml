@@ -8,7 +8,8 @@
         android:id="@+id/item_compra"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:text="CheckBox"
         android:clickable="false"
-        android:focusable="false"/>
+        android:focusable="false"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="CheckBox" />
 </LinearLayout>

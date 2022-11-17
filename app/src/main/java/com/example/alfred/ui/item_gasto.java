@@ -2,13 +2,14 @@ package com.example.alfred.ui;
 
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class item_gasto {
     private String nombre;
     // CheckBox checkBox;
     private String coste;
-    Button btn_item_gastos;
+    ImageButton btn_item_gastos;
 
     public item_gasto(String text, String coste) {
         this.nombre = text;

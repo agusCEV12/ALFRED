@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#62def8">
+    android:background="@color/MainColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,19 +13,23 @@
 
         <EditText
             android:id="@+id/text_popup_AgregarGasto_nombre_gasto"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints"
-            android:hint="Nombre del Gasto"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:hint="DESCRIPCION DEL GASTO"
+            android:textAlignment="center"
+            tools:ignore="MissingConstraints" />
 
         <EditText
             android:id="@+id/text_popup_AgregarGasto_cantidad"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cuanto te has gastado?"
             android:layout_gravity="center_horizontal"
-            android:inputType="number"/>
+            android:fontFamily="@font/montserrat_bold"
+            android:hint="VALOR"
+            android:inputType="number"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -38,6 +42,7 @@
                 android:id="@+id/btn_popup_agregarGasto_aceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Agregar" />
 
         </LinearLayout>

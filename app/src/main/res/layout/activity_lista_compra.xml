@@ -2,14 +2,14 @@
 
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/main_layout_Compra">
 
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.Lista_compra">
@@ -28,20 +28,17 @@
                 android:layout_height="?attr/listPreferredItemHeight"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:background="#43000000"
+                android:background="@color/ColorTop"
                 tools:ignore="MissingConstraints">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                <ImageButton
                     android:id="@+id/btn_add_compra"
-                    android:layout_width="wrap_content"
+                    android:layout_width="66dp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="false"
-                    android:layout_marginStart="337dp"
-                    android:layout_marginEnd="0dp"
-                    android:clickable="true"
-                    app:backgroundTint="@color/MainColor"
-                    app:srcCompat="@drawable/mas_positivo_suma_simbolo_matematico" />
+                    android:layout_alignParentRight="true"
+                    android:background="@color/ColorTop"
+                    android:scaleType="fitStart"
+                    app:srcCompat="@drawable/add" />
             </RelativeLayout>
 
 

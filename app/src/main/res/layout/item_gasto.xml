@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -10,10 +11,11 @@
 
         <TextView
             android:id="@+id/textview_item_gasto_nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="?attr/listPreferredItemHeight"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:clickable="false"
             android:focusable="false"
+            android:fontFamily="@font/montserrat_bold"
             android:text="CheckBox" />
 
 
@@ -24,22 +26,22 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="200dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_bold"
             android:text="Costo"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_item_gastos"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="X"
-            android:textAlignment="center"
-            android:textSize="100px"
             android:clickable="false"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:textAlignment="center"
+            tools:src="@android:drawable/ic_menu_close_clear_cancel" />
 
     </RelativeLayout>
 

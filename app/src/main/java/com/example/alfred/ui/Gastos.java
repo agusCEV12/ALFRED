@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -40,7 +41,7 @@ public class Gastos extends AppCompatActivity implements AdapterView.OnItemClick
     private Gastos_adapter adapter_popup;
 
     private ListView lista_gastos;
-    private Button btn_add_gastos;
+    private ImageButton btn_add_gastos;
     private TextView text_item_gastos;
     private TextView text_2_item_gastos;
 
