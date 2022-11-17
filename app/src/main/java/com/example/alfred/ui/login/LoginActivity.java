@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
 //import com.example.alfred.ui.HomeActivity;
 
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
     //private static final String URL2="http://192.168.0.14/alfred/login.php";
-    private static  final String URL2 ="https://appsonlinealfred.000webhostapp.com/config.php?DB_SERVER=localhost&DB_USERNAME=id19860485_appsonlinealfred&DB_PASSWORD=Pq0/r~6ymGng<9eL&DB_NAME=id19860485_alfred";
+    private static  final String URL2 ="https://appsonlinealfred.000webhostapp.com/login.php";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     progressDialog.dismiss();
 
-                    if(response.equalsIgnoreCase("Login Correcto")){
+                    if(response.contains("Success")){
                         userName.setText("");
                         password.setText("");
                         //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -89,12 +90,12 @@ public class LoginActivity extends AppCompatActivity {
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
+                        startActivity(intent);
                     }
                     else{
                         Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     }
-                    Intent intent = new Intent(LoginActivity.this, EspacioActivity.class);
-                    startActivity(intent);
                 }
             },new Response.ErrorListener(){
 
