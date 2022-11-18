@@ -76,15 +76,13 @@ public class LoginActivity extends AppCompatActivity {
             strUserName = userName.getText().toString().trim();
             strPassword = password.getText().toString().trim();
 
-            Intent intent = new Intent(this, SalaPrincipal.class);
-
 
             StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.dismiss();
 
-                    if(response.equalsIgnoreCase("Success")){
+                    if(response.contains("Success")){
                         userName.setText("");
                         password.setText("");
                         //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -92,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
                         startActivity(intent);
                     }
                     else{
