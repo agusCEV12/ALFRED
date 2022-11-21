@@ -60,7 +60,7 @@
                   android:imeOptions="actionDone"
                   android:inputType="textPersonName"
                   android:text="TOTALES GRUPO:"
-                  android:textSize="20dp" />
+                  android:textSize="16sp" />
 
               <TextView
                   android:id="@+id/edit_2_item_gastos"
@@ -78,7 +78,7 @@
                   android:imeOptions="actionDone"
                   android:inputType="textPersonName"
                   android:text=""
-                  android:textSize="20dp" />
+                  android:textSize="16dp" />
 
               <ImageButton
                   android:id="@+id/btn_add_gastos"

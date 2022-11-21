@@ -151,6 +151,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/textTopSpace3"
                 app:layout_constraintVertical_bias="0.150" />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="TAREAS POR SALA"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_salas_tarea"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textTopSpace3"
+                app:layout_constraintVertical_bias="1.0" />
+
             <Button
                 android:id="@+id/btn_salas_compra"
                 android:layout_width="356dp"
@@ -166,23 +181,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 app:layout_constraintVertical_bias="0.039"
                 android:onClick="goToCompras"/>
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="TAREAS POR SALA"
-                android:textColor="#000000"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/btn_salas_tarea"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.020"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btn_salas_tarea"
-                android:paddingBottom="50dp"
-                android:paddingLeft="20dp"
-                app:layout_constraintVertical_bias="1.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
