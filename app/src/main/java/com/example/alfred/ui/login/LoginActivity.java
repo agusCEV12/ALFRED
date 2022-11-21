@@ -26,6 +26,8 @@ import com.example.alfred.ui.Espacios.SalaPrincipal;
 import java.util.HashMap;
 import java.util.Map;
 
+import utils.PreferenceUtils;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userName, password;
@@ -90,6 +92,8 @@ public class LoginActivity extends AppCompatActivity {
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                        PreferenceUtils.saveEmail(strUserName, LoginActivity.this);
+                        PreferenceUtils.savePassword(strPassword, LoginActivity.this);
                         Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
                         startActivity(intent);
                     }
