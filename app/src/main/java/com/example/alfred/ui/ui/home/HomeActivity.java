@@ -1,5 +1,6 @@
 package com.example.alfred.ui.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,10 +51,11 @@ public class HomeActivity extends AppCompatActivity {
                 if(response.contains("Casa Creada")){
                     String nameUser ;
                     nameHouseET.setText("");
-                    /*Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.putExtra("user", strUserName);
-                    startActivity(intent);*/
+                    Intent intent = new Intent(HomeActivity.this, SalaPrincipal.class);
+                    //intent.putExtra("user", strUserName);
+                    startActivity(intent);
                     //Toast.makeText(HomeActivity.this, response, Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     Toast.makeText(HomeActivity.this, response, Toast.LENGTH_SHORT).show();

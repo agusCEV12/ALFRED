@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.ui.home.HomeActivity;
 //import com.example.alfred.ui.HomeActivity;
 
 import java.util.HashMap;
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
     //private static final String URL2="http://192.168.0.14/alfred/login.php";
-    private static  final String URL2 ="unscholarly-princip.000webhostapp.com/login.php";
+    private static  final String URL2 ="https://unscholarly-princip.000webhostapp.com/login.php";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -88,7 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                         password.setText("");
                         PreferenceUtils.saveEmail(strUserName, LoginActivity.this);
                         PreferenceUtils.savePassword(strPassword, LoginActivity.this);
-                        Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("user", strUserName);
                         startActivity(intent);
                     }
                     else{
