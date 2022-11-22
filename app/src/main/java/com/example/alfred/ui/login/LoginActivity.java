@@ -83,15 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.dismiss();
-//asd
                     if(response.contains("Success")){
                         userName.setText("");
                         password.setText("");
-                        //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        //startActivity(intent);
-                        //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                         PreferenceUtils.saveEmail(strUserName, LoginActivity.this);
                         PreferenceUtils.savePassword(strPassword, LoginActivity.this);
                         Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
