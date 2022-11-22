@@ -20,8 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
-import com.example.alfred.ui.Espacios.SalaPrincipal;
-//import com.example.alfred.ui.HomeActivity;
+import com.example.alfred.ui.ui.home.HomeActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,11 +28,10 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userName, password;
-    private String strUserName, strPassword;
+    public String strUserName, strPassword;
     ImageButton imageButton;
     //URL del archivo php de nuestro LOGIN
-    //private static final String URL2="http://192.168.0.14/alfred/login.php";
-    private static  final String URL2 ="https://appsonlinealfred.000webhostapp.com/login.php";
+    private static final String URL ="https://appsonlinealfred.000webhostapp.com/login.php";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -77,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             strPassword = password.getText().toString().trim();
 
 
-            StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     progressDialog.dismiss();
@@ -85,12 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.contains("Success")){
                         userName.setText("");
                         password.setText("");
-                        //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        //startActivity(intent);
-                        //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        //startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        //Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("user", strUserName);
                         startActivity(intent);
                     }
                     else{
