@@ -41,7 +41,7 @@
                     style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
-                    android:background="@color/white"
+                    android:background="@drawable/myborder2"
                     android:scaleType="fitStart"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

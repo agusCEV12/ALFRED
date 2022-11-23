@@ -176,6 +176,14 @@ public class Gastos extends AppCompatActivity implements AdapterView.OnItemClick
                 EditText nombre = result.findViewById(id.text_popup_AgregarGasto_nombre_gasto);
                 EditText cantidad = result.findViewById(id.text_popup_AgregarGasto_cantidad);
                 Button btn_agregar_Coste = result.findViewById(id.btn_popup_agregarGasto_aceptar);
+                Button btn_cancelar_Coste = result.findViewById(id.btn_popup_agregarGasto_cancelar);
+
+                btn_cancelar_Coste.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });
 
                 btn_agregar_Coste.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -278,6 +286,11 @@ public class Gastos extends AppCompatActivity implements AdapterView.OnItemClick
             default:
                 break;
         }
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
     // ---------------------------------------------------------------------------------------------
 

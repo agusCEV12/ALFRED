@@ -132,6 +132,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                         addItem(nombre.getText().toString());
                         popupWindow.dismiss();
                     }
+
                 });
             }
         });
@@ -213,6 +214,11 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
             default:
                 break;
         }
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
     // ---------------------------------------------------------------------------------------------
 }

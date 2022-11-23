@@ -17,7 +17,7 @@
                 android:id="@+id/btn_salas_gastos"
                 android:layout_width="356dp"
                 android:layout_height="40dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="AÑADIR GASTO"
                 android:textSize="10sp"
@@ -77,7 +77,7 @@
                 android:id="@+id/buttonTarea4"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="OTROS"
                 android:textSize="10sp"
@@ -109,7 +109,7 @@
                 android:id="@+id/btn_salas_tarea"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="SALON"
                 android:textSize="10sp"
@@ -125,7 +125,7 @@
                 android:id="@+id/buttonTarea2"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="BAÑO"
                 android:textSize="10sp"
@@ -140,7 +140,7 @@
                 android:id="@+id/buttonTarea3"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="COCINA"
                 android:textSize="10sp"
@@ -164,13 +164,13 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textTopSpace3"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.87" />
 
             <Button
                 android:id="@+id/btn_salas_compra"
                 android:layout_width="356dp"
                 android:layout_height="40dp"
-                android:background="@color/white"
+                android:background="@drawable/myborder3"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="AÑADIR PRODUCTO"
                 android:textSize="10sp"
@@ -190,6 +190,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:background="@color/MainColor"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_gravity="left"
         android:entries="@array/pantallas" />
 
