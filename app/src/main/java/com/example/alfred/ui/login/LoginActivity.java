@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     //URL del archivo php de nuestro LOGIN
     //private static final String URL2="http://192.168.0.14/alfred/login.php";
     private static  final String URL2 ="https://unscholarly-princip.000webhostapp.com/login.php";
+    private static  final String URL3 ="https://unscholarly-princip.000webhostapp.com/checkHome.php";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -85,13 +86,9 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     progressDialog.dismiss();
                     if(response.contains("Success")){
-                        userName.setText("");
-                        password.setText("");
                         PreferenceUtils.saveEmail(strUserName, LoginActivity.this);
                         PreferenceUtils.savePassword(strPassword, LoginActivity.this);
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        intent.putExtra("user", strUserName);
-                        startActivity(intent);
+                        checkHome();
                     }
                     else{
                         Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -119,5 +116,43 @@ public class LoginActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
             requestQueue.add(request);
         }
+    }
+
+    public void checkHome(){
+        StringRequest request = new StringRequest(Request.Method.POST, URL3, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("This user already has a home")){
+                    Toast.makeText(LoginActivity.this, "Holiwi", Toast.LENGTH_SHORT).show();
+                    userName.setText("");
+                    Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
+                    intent.putExtra("user", strUserName);
+                    startActivity(intent);
+                }else if (response.contains("This user doesnt has a home")){
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
+                }
+            }
+        },new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("email",strUserName);
+                return params;
+
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        requestQueue.add(request);
     }
 }

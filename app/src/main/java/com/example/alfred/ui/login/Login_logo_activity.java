@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.ui.home.HomeActivity;
 
 import utils.PreferenceUtils;
 
@@ -47,8 +48,13 @@ public class Login_logo_activity  extends AppCompatActivity {
     public void comprobarSharedPrefs(){
 
         try {
-            if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+            if ((PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals(""))
+            && PreferenceUtils.getHome(this) != null){
                 Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+            } else if ((PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals(""))
+                    && PreferenceUtils.getHome(this) == null || PreferenceUtils.getHome(this).equals("")){
+                Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
             }
         } catch (Exception a){

@@ -19,9 +19,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import utils.PreferenceUtils;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -38,7 +41,10 @@ public class HomeActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         if (extra != null){
             nameUser = extra.getString("user");
+        } else{
+            nameUser = PreferenceUtils.getEmail(this);
         }
+
     }
 
     public void createHome (View view){
@@ -47,23 +53,20 @@ public class HomeActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 if(response.contains("Casa Creada")){
                     String nameUser ;
                     nameHouseET.setText("");
+                    PreferenceUtils.saveHome(nameHouseET.getText().toString(), HomeActivity.this);
                     Intent intent = new Intent(HomeActivity.this, SalaPrincipal.class);
-                    //intent.putExtra("user", strUserName);
                     startActivity(intent);
-                    //Toast.makeText(HomeActivity.this, response, Toast.LENGTH_SHORT).show();
-
+                    finish();
                 }
                 else{
-                    Toast.makeText(HomeActivity.this, response, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this,"Este usuario ya tiene una casa", Toast.LENGTH_LONG).show();
                     Log.d("el error es:", response);
                 }
             }
         },new Response.ErrorListener(){
-
             @Override
             public void onErrorResponse(VolleyError error) {
 
@@ -80,28 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(HomeActivity.this);
         requestQueue.add(request);
     }
 }
-
-  /*  String nameHouse = nameHouseET.getText().toString();
-
-    StringRequest request = new StringRequest(
-            Request.Method.POST,
-            URL,
-            response -> Toast.makeText(getApplication(), "Casa creada ", Toast.LENGTH_LONG).show(),
-            error -> Toast.makeText(getApplication(), "UPS error 5151651451", Toast.LENGTH_LONG).show()){
-
-        @Nullable
-        @Override
-        protected Map<String, String> getParams() throws AuthFailureError {
-            Map<String, String> params = new HashMap<>();
-            params.put("idUser", nameUser);
-            params.put("name", nameHouse);
-            return params;
-        }
-    };
-    RequestQueue requestQueue = Volley.newRequestQueue(HomeActivity.this);
-        requestQueue.add(request);*/

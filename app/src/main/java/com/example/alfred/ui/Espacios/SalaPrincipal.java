@@ -21,7 +21,7 @@ import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.Lista_compra;
-import com.example.alfred.ui.login.Login_logo_activity;
+import com.example.alfred.ui.login.LoginActivity;
 
 import utils.PreferenceUtils;
 
@@ -42,7 +42,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones);
+        setContentView(R.layout.activity_sala_principal);
 
         btn_Lista_Compra = findViewById(R.id.btn_salas_compra);
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
@@ -128,15 +128,18 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 Log.d("mi cuenta", "Hemos pulsado en boton mi cuenta del menu lateral en Sala principal");
                 break;
             case 5:
-                PreferenceUtils.saveEmail("", this);
-                PreferenceUtils.savePassword("", this);
-                Toast.makeText(this, "Hemos pulsado en Cerar sesion", Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(this, Login_logo_activity.class);
-                startActivity(intent3);
                 try {
+                    if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+                        PreferenceUtils.deleteSharedPre(this);
+                        Toast.makeText(this, "Funciona el Log Out", Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(this, LoginActivity.class);
+                        startActivity(intent3);
+                    } else{
+                        Toast.makeText(this, "Funciona el LogOut pero el mail es null", Toast.LENGTH_SHORT).show();
+                    }
 
                 }catch (Exception a){
-
+                    Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:
