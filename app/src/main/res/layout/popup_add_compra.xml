@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/text_popup_AgregarTarea_nombre_tarea"
+            android:id="@+id/text_popup_AgregarCompra_nombre_compra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,14 +30,14 @@
             android:layout_gravity="center_horizontal">
 
             <Button
-                android:id="@+id/btn_popup_agregarTarea_aceptar"
+                android:id="@+id/btn_popup_agregarCompra_aceptar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Aceptar" />
 
             <Button
-                android:id="@+id/btn_popup_agregarTarea_cancelar"
+                android:id="@+id/btn_popup_agregarCompra_cancelar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

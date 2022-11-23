@@ -94,15 +94,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
+                android:background="@android:color/transparent"
                 android:text="PISO COMPARTIDO"
                 android:textColor="#000000"
                 android:textSize="12sp"
+                android:editable="true"
+                android:clickable="true"
+                android:singleLine="true"
+                android:cursorVisible="true"
+                android:inputType="text"
+                android:focusableInTouchMode="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.025" />
+                app:layout_constraintVertical_bias="0.025"
+                tools:ignore="Deprecated" />
 
 
             <Button

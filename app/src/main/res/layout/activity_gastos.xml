@@ -20,7 +20,8 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/edit_box_gastos"
             android:layout_below="@+id/textAnadirGast"
-            android:layout_marginTop="13dp" />
+            android:layout_marginTop="13dp"
+            android:background="@color/white" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -115,9 +116,10 @@
 
             <ImageButton
                 android:id="@+id/btn_add_gastos"
-                android:layout_width="66dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
                 android:background="@color/ColorTop"
                 android:scaleType="fitStart"
                 app:srcCompat="@drawable/add" />

@@ -62,7 +62,8 @@
             android:layout_height="623dp"
             android:layout_above="@+id/edit_box_tareas"
             android:layout_below="@+id/imageView6"
-            android:layout_marginTop="1dp">
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
 
         </ListView>
 
@@ -72,15 +73,16 @@
             android:layout_height="?attr/listPreferredItemHeight"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:background="@color/ColorTop"
+            android:background="@color/white"
             tools:ignore="MissingConstraints">
 
             <ImageButton
                 android:id="@+id/btn_add_tareas"
-                android:layout_width="66dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:background="@color/ColorTop"
+                android:layout_marginRight="15dp"
+                android:background="@color/white"
                 android:scaleType="fitStart"
                 app:srcCompat="@drawable/add" />
         </RelativeLayout>
