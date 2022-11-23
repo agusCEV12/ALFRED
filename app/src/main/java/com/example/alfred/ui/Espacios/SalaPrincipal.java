@@ -3,11 +3,13 @@ package com.example.alfred.ui.Espacios;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,9 @@ import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.Lista_compra;
+import com.example.alfred.ui.login.Login_logo_activity;
+
+import utils.PreferenceUtils;
 
 public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -27,6 +32,8 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     Button btn_Lista_Gastos;
 
     ListView lista_menu_sala;
+
+    String sharedEmail;
 
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;
@@ -55,6 +62,16 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
         lista_menu_sala.setOnItemClickListener(this);
 
+        comprobarSharedPrefs();
+
+    }
+
+    private void comprobarSharedPrefs() {
+        if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+            sharedEmail = PreferenceUtils.getEmail(this);
+        } else {
+            Toast.makeText(this, "Problema con el Shared Preference Email", Toast.LENGTH_LONG).show();
+        }
     }
 
     // Metodo para ir a la actividad de Taeas
@@ -106,6 +123,21 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
             case 3:
                 Intent intent2 = new Intent(this, Gastos.class);
                 startActivity(intent2);
+                break;
+            case 4:
+                Log.d("mi cuenta", "Hemos pulsado en boton mi cuenta del menu lateral en Sala principal");
+                break;
+            case 5:
+                PreferenceUtils.saveEmail("", this);
+                PreferenceUtils.savePassword("", this);
+                Toast.makeText(this, "Hemos pulsado en Cerar sesion", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(this, Login_logo_activity.class);
+                startActivity(intent3);
+                try {
+
+                }catch (Exception a){
+
+                }
                 break;
             default:
                 break;

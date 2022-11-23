@@ -46,13 +46,15 @@ public class Register extends AppCompatActivity {
 
         requesQueue = Volley.newRequestQueue(this);
 
+        //Creacion de variables
         mail = findViewById(R.id.mail);
         password1 = findViewById(R.id.password);
         password2 = findViewById(R.id.password2);
         name = findViewById(R.id.name);
         register = findViewById(R.id.register);
-
         imageButton = findViewById(R.id.goToLogin);
+
+        //Metodo on click para cerrar la actividad y volver al login
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +63,7 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    // Metodo que hace la validacion de los datos introducidos por pantalla
     public void doRegistrer (View view) {
         // instanciamos las variables
         String nameUser = name.getText().toString();
@@ -78,12 +81,14 @@ public class Register extends AppCompatActivity {
         } else if (passw1.isEmpty()) {
             Toast.makeText(getApplication(), "El campo de la contraseña esta vacio", Toast.LENGTH_LONG).show();
         }else if (passw1.equals(passw2)) {
-            createRegister(nameUser, mailUser, passw1, passw2);
+            createRegister(nameUser, mailUser, passw1, passw2);     // Al entrar aqui pasa al metodo de crear un usuario
         }else {
             Toast.makeText(getApplication(), "Las contraseñas no son iguales", Toast.LENGTH_LONG).show();
         }
     }
 
+
+    //Metodo para registrarnos pasando las variables al host y ejecutar el php
     public void createRegister(final String name,final String mail,final String passw1, final String passw2){
 
 
@@ -91,6 +96,7 @@ public class Register extends AppCompatActivity {
         progressDialog.setMessage("Por favor espera...");
         progressDialog.show();
 
+        //Hacemos la peticion al servidor
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
@@ -102,6 +108,7 @@ public class Register extends AppCompatActivity {
 
                         //Si recibimos este mensaje del php significa que nos hemos registrado con exito
                         if(response.contains("Usuarios registrado")){
+                            //Vaciamos las variables por seguridad
                             Register.this.name.setText("");
                             Register.this.mail.setText("");
                             Register.this.password1.setText("");
