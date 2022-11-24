@@ -107,6 +107,10 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 Intent intent2 = new Intent(this, Gastos.class);
                 startActivity(intent2);
                 break;
+            case 4:
+                Intent intent3 = new Intent(this, Profile.class);
+                startActivity(intent3);
+                break;
             default:
                 break;
         }

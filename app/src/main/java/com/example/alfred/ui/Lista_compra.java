@@ -123,16 +123,16 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 popupWindow.showAtLocation(result, Gravity.CENTER, 0, 0);
 
                 Button button = (Button) popupView.findViewById(id.btn_popup_agregarCompra_aceptar);
-                //Button btn_cancelar_Compra = result.findViewById(id.btn_popup_agregarCompra_cancelar);
+                Button btn_cancelar_Compra = result.findViewById(id.btn_popup_agregarCompra_cancelar);
                 EditText nombre = popupView.findViewById(id.text_popup_AgregarCompra_nombre_compra);
 
                 //Button cancelar, no funciona
-                /*btn_cancelar_Compra.setOnClickListener(new View.OnClickListener() {
+                btn_cancelar_Compra.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         popupWindow.dismiss();
                     }
-                });*/
+                });
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
