@@ -118,8 +118,17 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 // enseñamos la ventana del pop-up
                 popupWindow.showAtLocation(result, Gravity.CENTER, 0, 0);
 
-                Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
-                EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+                Button button = (Button) popupView.findViewById(id.btn_popup_agregarCompra_aceptar);
+                //Button btn_cancelar_Compra = result.findViewById(id.btn_popup_agregarCompra_cancelar);
+                EditText nombre = popupView.findViewById(id.text_popup_AgregarCompra_nombre_compra);
+
+                //Button cancelar, no funciona
+                /*btn_cancelar_Compra.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });*/
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,7 +137,9 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                         addItem(nombre.getText().toString());
                         popupWindow.dismiss();
                     }
+
                 });
+
             }
         });
     }
@@ -209,6 +220,11 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
             default:
                 break;
         }
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
     // ---------------------------------------------------------------------------------------------
 }

@@ -1,104 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_layout_Gastos">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout_Gastos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 
-      <RelativeLayout
-          android:id="@+id/activity_gastos"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          tools:context=".ui.Lista_compra">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/listPreferredItemHeight"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"/>
+    <RelativeLayout
+        android:id="@+id/activity_gastos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Lista_compra">
 
         <ListView
             android:id="@+id/list_gastos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/edit_box_gastos"/>
+            android:layout_above="@+id/edit_box_gastos"
+            android:layout_below="@+id/textAnadirGast"
+            android:layout_marginTop="13dp"
+            android:background="@color/white" />
 
-          <RelativeLayout
-              android:id="@+id/edit_box_gastos"
-              android:layout_width="match_parent"
-              android:layout_height="?attr/listPreferredItemHeight"
-              android:layout_alignParentStart="true"
-              android:layout_alignParentBottom="true"
-              android:background="@color/ColorTop"
-              android:paddingLeft="10px"
-              android:paddingTop="5px"
-              android:paddingRight="10px"
-              android:paddingBottom="5px"
-              tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="@color/MainColor" />
 
-              <TextView
-                  android:id="@+id/edit_item_gastos"
-                  android:layout_width="178dp"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentStart="true"
-                  android:layout_alignParentLeft="true"
-                  android:layout_alignParentBottom="true"
-                  android:layout_marginStart="14dp"
-                  android:layout_marginLeft="14dp"
-                  android:layout_marginEnd="170dp"
-                  android:layout_marginRight="170dp"
-                  android:layout_marginBottom="18dp"
-                  android:fontFamily="@font/montserrat_bold"
-                  android:imeOptions="actionDone"
-                  android:inputType="textPersonName"
-                  android:text="TOTALES GRUPO:"
-                  android:textSize="20dp" />
+        <TextView
+            android:id="@+id/textAnadirGast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="AÑADIR GASTO"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
 
-              <TextView
-                  android:id="@+id/edit_2_item_gastos"
-                  android:layout_width="146dp"
-                  android:layout_height="wrap_content"
-                  android:layout_alignParentStart="true"
-                  android:layout_alignParentLeft="true"
-                  android:layout_alignParentBottom="true"
-                  android:layout_marginStart="210dp"
-                  android:layout_marginLeft="228dp"
-                  android:layout_marginRight="22dp"
-                  android:layout_marginBottom="18dp"
-                  android:layout_toLeftOf="@+id/btn_add_gastos"
-                  android:fontFamily="@font/montserrat_bold"
-                  android:imeOptions="actionDone"
-                  android:inputType="textPersonName"
-                  android:text=""
-                  android:textSize="20dp" />
+        <ImageButton
+            android:id="@+id/btn_back_gasto"
+            android:layout_width="15dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="12dp"
+            android:onClick="goToOptions"
+            android:background="@color/MainColor"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/atras" />
 
-              <ImageButton
-                  android:id="@+id/btn_add_gastos"
-                  app:srcCompat="@drawable/add"
-                  android:layout_width="66dp"
-                  android:layout_height="match_parent"
-                  android:layout_alignParentRight="true"
-                  android:background="@color/ColorTop"
-                  android:scaleType="fitStart" />
+        <RelativeLayout
+            android:id="@+id/edit_box_gastos"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeight"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ColorTop"
+            android:paddingLeft="10px"
+            android:paddingTop="5px"
+            android:paddingRight="10px"
+            android:paddingBottom="5px"
+            tools:ignore="MissingConstraints">
 
-          </RelativeLayout>
+            <TextView
+                android:id="@+id/edit_item_gastos"
+                android:layout_width="178dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginEnd="170dp"
+                android:layout_marginRight="170dp"
+                android:layout_marginBottom="18dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:text="TOTALES GRUPO:"
+                android:textSize="16sp" />
 
-      </RelativeLayout>
+            <TextView
+                android:id="@+id/edit_2_item_gastos"
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="210dp"
+                android:layout_marginLeft="228dp"
+                android:layout_marginRight="22dp"
+                android:layout_marginBottom="18dp"
+                android:layout_toLeftOf="@+id/btn_add_gastos"
+                android:fontFamily="@font/montserrat_bold"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textSize="16dp" />
 
-  <ListView
-      android:id="@+id/lista_menu_gastos"
-      android:layout_width="240dp"
-      android:layout_height="match_parent"
-      android:background="@color/MainColor"
-      android:layout_gravity="left"
-      android:entries="@array/pantallas"/>
+            <ImageButton
+                android:id="@+id/btn_add_gastos"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@color/ColorTop"
+                android:scaleType="fitStart"
+                app:srcCompat="@drawable/add" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lista_menu_gastos"
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="@color/MainColor"
+        android:entries="@array/pantallas"
+        android:fontFamily="@font/montserrat_bold" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

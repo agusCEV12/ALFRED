@@ -28,6 +28,7 @@ import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.Lista_compra;
+import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -55,11 +56,9 @@ public class TareasActivity extends AppCompatActivity implements AdapterView.OnI
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_tareas = new ArrayList<>();
         itemList_tareas.add(new item_tarea("Recoger el salon"));
-        itemList_tareas.add(new item_tarea("lavar los platos"));
         itemList_tareas.add(new item_tarea("Limpiar ventanas"));
-        itemList_tareas.add(new item_tarea("Barrer el patio"));
-        itemList_tareas.add(new item_tarea("Arreglar grifo"));
-        itemList_tareas.add(new item_tarea("Mover la mesa"));
+        itemList_tareas.add(new item_tarea("Aspirar suelo"));
+        itemList_tareas.add(new item_tarea("Colocar sofá"));
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_tareas);
@@ -207,6 +206,11 @@ public class TareasActivity extends AppCompatActivity implements AdapterView.OnI
             default:
                 break;
         }
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
     // ---------------------------------------------------------------------------------------------
     }

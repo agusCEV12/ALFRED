@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/MainColor">
+    android:background="@drawable/myborder">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
         <EditText
             android:id="@+id/text_popup_AgregarTarea_nombre_tarea"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/montserrat_bold"
@@ -34,6 +34,14 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Aceptar" />
+
+            <Button
+                android:id="@+id/btn_popup_cancelarTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="CANCELAR" />
 
         </LinearLayout>
 
