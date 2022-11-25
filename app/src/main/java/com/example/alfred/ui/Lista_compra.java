@@ -6,6 +6,7 @@ import static com.example.alfred.R.layout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,17 +27,29 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.PreferenceUtils;
 
 public class Lista_compra extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ArrayList<item_compra> itemList_compra;
     private Lista_compra_adapter adapter;
+    String URL = "https://unscholarly-princip.000webhostapp.com/addArticles.php";
+    String nameHouse;
 
     private ListView lista_compra;
     private ImageButton btn_add_compra;
@@ -54,6 +67,15 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
         lista_compra = findViewById(id.lista_compra);
         btn_add_compra = findViewById(id.btn_add_compra);
+
+        //Recogemos el nombre de la Casa
+        Bundle extra = getIntent().getExtras();
+        if (extra != null){
+            nameHouse = extra.getString("home");
+        } else{
+            nameHouse = PreferenceUtils.getEmail(this);
+        }
+
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_compra = new ArrayList<>();
@@ -209,6 +231,54 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
             default:
                 break;
         }
+    }
+/*
+Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
+                EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Lista_compra.this, "Compra agregada correctamente", Toast.LENGTH_SHORT).show();
+                        addItem(nombre.getText().toString());
+                        popupWindow.dismiss();
+///////////////////////  */
+    public void addArticle (View view){
+
+        EditText article = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("Casa Creada")){
+
+                    article.setText("");
+                    //PreferenceUtils.saveHome(nameHouseET.getText().toString(), Lista_compra.this);
+
+                }
+                else{
+                    Toast.makeText(Lista_compra.this,"UPS ERROR", Toast.LENGTH_LONG).show();
+                    Log.d("el error es:", response);
+                }
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(Lista_compra.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("nameHome", nameHouse);
+                params.put("articles", article);
+                return params;
+
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(Lista_compra.this);
+        requestQueue.add(request);
     }
     // ---------------------------------------------------------------------------------------------
 }
