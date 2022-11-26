@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
                     nameHouseET.setText("");
                     PreferenceUtils.saveHome(nameHouseET.getText().toString(), HomeActivity.this);
                     Intent intent = new Intent(HomeActivity.this, SalaPrincipal.class);
+                    intent.putExtra("home",nameHouse);
                     startActivity(intent);
                     finish();
                 }
