@@ -92,7 +92,7 @@
 
 
             <TextView
-                android:id="@+id/textTopSpace3"
+                android:id="@+id/titulo_sala_principal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_bold"

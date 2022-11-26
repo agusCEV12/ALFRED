@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     Button btn_Lista_Tareas;
     Button btn_Lista_Gastos;
 
+    TextView titulo_sala_principal;
+
     ListView lista_menu_sala;
 
     String sharedEmail;
@@ -39,7 +42,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_principal);
@@ -48,6 +51,9 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
         btn_Lista_Tareas = findViewById(R.id.btn_salas_tarea);
         lista_menu_sala = findViewById(R.id.lista_menu_sala);
+        //titulo_sala_principal = findViewById(R.id.titulo_sala_principal);
+
+        //titulo_sala_principal.setText(PreferenceUtils.getHome(this));
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Sala);

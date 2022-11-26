@@ -19,7 +19,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
-import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;

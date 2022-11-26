@@ -6,6 +6,7 @@ import static com.example.alfred.R.layout;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,12 +27,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.login.Login_logo_activity;
+import com.example.alfred.ui.ui.home.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.PreferenceUtils;
 
 public class Lista_compra extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -40,6 +54,9 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
     private ListView lista_compra;
     private ImageButton btn_add_compra;
+
+    // URL DE LA BASE DE DATOS
+    String URL = "unscholarly-princip.000webhostapp.com/addArticles.php";
 
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;
@@ -57,12 +74,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_compra = new ArrayList<>();
-        /*itemList_compra.add(new item_compra("Papel de cocina"));
-        itemList_compra.add(new item_compra("Pan"));
-        itemList_compra.add(new item_compra("Detergente"));
-        itemList_compra.add(new item_compra("Tomates"));
-        itemList_compra.add(new item_compra("Cebolla"));
-        itemList_compra.add(new item_compra("Carne Picada"));*/
+
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(id.main_layout_Compra);
@@ -119,16 +131,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 popupWindow.showAtLocation(result, Gravity.CENTER, 0, 0);
 
                 Button button = (Button) popupView.findViewById(id.btn_popup_agregarCompra_aceptar);
-                //Button btn_cancelar_Compra = result.findViewById(id.btn_popup_agregarCompra_cancelar);
                 EditText nombre = popupView.findViewById(id.text_popup_AgregarCompra_nombre_compra);
-
-                //Button cancelar, no funciona
-                /*btn_cancelar_Compra.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        popupWindow.dismiss();
-                    }
-                });*/
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -137,24 +140,13 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                         addItem(nombre.getText().toString());
                         popupWindow.dismiss();
                     }
-
                 });
-
             }
         });
     }
 
-    //Permite añadir un item a la lista desde el teclado
-        /*edit_item_tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                addItem();
-                return true;
-            }
-        });
-    }*/
-
     //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento
+    // AQUI HABRIA QUE PONER EL DELETE A LA BASE DE DATOS
     private void maybeRemoveItem ( int pos){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirmación");
@@ -171,6 +163,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
     }
 
     //Metodo para añadir un item a la lista y borrar el campo de texto
+    // AQUI HACEMOS EL POST PARA AÑADIR PRODUCTO A LA BBDD
     private void addItem (String compra){
 
         if (!compra.isEmpty()) {
@@ -184,7 +177,40 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
         itemList_compra.set(position, new item_compra(item_text));
     }
 
+    private void addArticle(){
+        StringRequest request = new StringRequest(Request.Method.POST,
+                URL,
+                new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("Articulo añadido")){
+                    Toast.makeText(Lista_compra.this, "Tu articulo se ha añadido correctamente",
+                            Toast.LENGTH_SHORT).show();
+                } else{
+                    Toast.makeText(Lista_compra.this, response, Toast.LENGTH_SHORT).show();
+                }
+            }
+        },new Response.ErrorListener(){
 
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Lista_compra.this, error.getMessage().toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("nameHome",PreferenceUtils.getEmail(Lista_compra.this));
+                params.put("articles",PreferenceUtils.getHome(Lista_compra.this));
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
+
+    }
     //Bloque de Metodos del Menu -------------------------------------------------------------------
 
     @Override
