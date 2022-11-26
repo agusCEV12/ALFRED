@@ -104,7 +104,7 @@ public class Login_logo_activity  extends AppCompatActivity  {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
