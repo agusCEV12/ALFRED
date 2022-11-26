@@ -8,7 +8,6 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -31,6 +30,7 @@ import android.widget.Toast;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.Lista_compra.Lista_compra;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.alfred.ui;
+package com.example.alfred.ui.Lista_compra;
 
 public class item_compra {
 

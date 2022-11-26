@@ -21,7 +21,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
-import com.example.alfred.ui.Lista_compra;
+import com.example.alfred.ui.Lista_compra.Lista_compra;
+import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
 import com.example.alfred.ui.login.LoginActivity;
 
 import utils.PreferenceUtils;
@@ -31,6 +32,8 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     Button btn_Lista_Compra;
     Button btn_Lista_Tareas;
     Button btn_Lista_Gastos;
+
+    Button buttonTarea3;
 
     TextView titulo_sala_principal;
 
@@ -51,6 +54,14 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
         btn_Lista_Tareas = findViewById(R.id.btn_salas_tarea);
         lista_menu_sala = findViewById(R.id.lista_menu_sala);
+        buttonTarea3 = findViewById(R.id.buttonTarea3);
+        buttonTarea3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SalaPrincipal.this, prueba_lista_compra_activity.class);
+                startActivity(intent);
+            }
+        });
         //titulo_sala_principal = findViewById(R.id.titulo_sala_principal);
 
         //titulo_sala_principal.setText(PreferenceUtils.getHome(this));

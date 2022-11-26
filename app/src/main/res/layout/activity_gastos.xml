@@ -12,7 +12,7 @@
         android:id="@+id/activity_gastos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.Lista_compra">
+        tools:context=".ui.Lista_compra.Lista_compra">
 
         <ListView
             android:id="@+id/list_gastos"

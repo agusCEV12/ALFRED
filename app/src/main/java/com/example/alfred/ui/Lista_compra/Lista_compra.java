@@ -1,8 +1,9 @@
-package com.example.alfred.ui;
+package com.example.alfred.ui.Lista_compra;
 
 import static com.example.alfred.R.id;
 import static com.example.alfred.R.layout;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
 
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
     private ArrayList<item_compra> itemList_compra;
     private Lista_compra_adapter adapter;
     String URL = "https://unscholarly-princip.000webhostapp.com/addArticles.php";
+    String URL2 = "https://unscholarly-princip.000webhostapp.com/getHome.php";
     String nameHouse;
 
     private ListView lista_compra;
@@ -67,6 +70,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
         lista_compra = findViewById(id.lista_compra);
         btn_add_compra = findViewById(id.btn_add_compra);
+        getHome();
 
         //Recogemos el nombre de la Casa
         Bundle extra = getIntent().getExtras();
@@ -79,12 +83,6 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_compra = new ArrayList<>();
-        /*itemList_compra.add(new item_compra("Papel de cocina"));
-        itemList_compra.add(new item_compra("Pan"));
-        itemList_compra.add(new item_compra("Detergente"));
-        itemList_compra.add(new item_compra("Tomates"));
-        itemList_compra.add(new item_compra("Cebolla"));
-        itemList_compra.add(new item_compra("Carne Picada"));*/
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(id.main_layout_Compra);
@@ -140,8 +138,8 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 // enseñamos la ventana del pop-up
                 popupWindow.showAtLocation(result, Gravity.CENTER, 0, 0);
 
-                Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
-                EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
+                @SuppressLint({"MissingInflatedId", "LocalSuppress"}) EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
 
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -154,16 +152,6 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
-
-    //Permite añadir un item a la lista desde el teclado
-        /*edit_item_tareas.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                addItem();
-                return true;
-            }
-        });
-    }*/
 
     //Metodo para que nos salga un pop-up para confirmar si queremos eliminar un elemento
     private void maybeRemoveItem ( int pos){
@@ -232,27 +220,15 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 break;
         }
     }
-/*
-Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_aceptar);
-                EditText nombre = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
 
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(Lista_compra.this, "Compra agregada correctamente", Toast.LENGTH_SHORT).show();
-                        addItem(nombre.getText().toString());
-                        popupWindow.dismiss();
-///////////////////////  */
     public void addArticle (View view){
 
-        EditText article = popupView.findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
+        EditText article = findViewById(R.id.text_popup_AgregarTarea_nombre_tarea);
         StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.contains("Casa Creada")){
-
+                if(response.contains("Articulo añadido")){
                     article.setText("");
-                    //PreferenceUtils.saveHome(nameHouseET.getText().toString(), Lista_compra.this);
 
                 }
                 else{
@@ -271,8 +247,8 @@ Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_acep
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("nameHome", nameHouse);
-                params.put("articles", article);
+                params.put("nameHome", PreferenceUtils.getHome(Lista_compra.this));
+                params.put("articles", String.valueOf(article));
                 return params;
 
             }
@@ -281,4 +257,38 @@ Button button = (Button) popupView.findViewById(R.id.btn_popup_agregarTarea_acep
         requestQueue.add(request);
     }
     // ---------------------------------------------------------------------------------------------
+
+
+    public void getHome (){
+        StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response != null || !response.equals("")){
+
+                PreferenceUtils.saveHome(response, Lista_compra.this);
+                    Toast.makeText(Lista_compra.this, PreferenceUtils.getHome(Lista_compra.this),
+                            Toast.LENGTH_SHORT).show();
+
+                } else{
+                    Toast.makeText(Lista_compra.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        },new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Lista_compra.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("email",PreferenceUtils.getEmail(Lista_compra.this));
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
+    }
 }

@@ -83,14 +83,14 @@ public class Login_logo_activity  extends AppCompatActivity  {
             public void onResponse(String response) {
                 if(response.contains("This user already has a home")
                 && (PreferenceUtils.getEmail(Login_logo_activity.this) != null ||
-                        PreferenceUtils.getEmail(Login_logo_activity.this).equals(""))){
+                        !PreferenceUtils.getEmail(Login_logo_activity.this).equals(""))){
 
                     Intent intent = new Intent(Login_logo_activity.this, SalaPrincipal.class);
                     startActivity(intent);
 
                 }else if (response.contains("This user doesnt has a home")&&
                         (PreferenceUtils.getEmail(Login_logo_activity.this) != null) ||
-                PreferenceUtils.getEmail(Login_logo_activity.this).equals("")){
+                !PreferenceUtils.getEmail(Login_logo_activity.this).equals("")){
 
                    Intent intent = new Intent(Login_logo_activity.this, HomeActivity.class);
                    startActivity(intent);
