@@ -89,6 +89,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.Gastos_bbdd.Gastos_bbdd_activity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.Espacios.SalaPrincipal"
             android:exported="false" >
             <meta-data

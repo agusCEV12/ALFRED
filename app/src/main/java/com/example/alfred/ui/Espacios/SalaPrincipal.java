@@ -27,7 +27,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.Gastos_bbdd.Gastos_bbdd_activity;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
 import com.example.alfred.ui.Lista_compra.Lista_compra;
 import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
 import com.example.alfred.ui.login.LoginActivity;
@@ -107,19 +109,19 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
     // Metodo para ir a la actividad de Tareas
     public void goToTareas (View view){
-        Intent intent = new Intent(this, TareasActivity.class);
+        Intent intent = new Intent(this, Tareas_bbdd_activity.class);
         startActivity(intent);
     }
 
     // Metodo para ir a la actividad de Compras
     public void goToCompras (View view){
-        Intent intent = new Intent(this, Lista_compra.class);
+        Intent intent = new Intent(this, prueba_lista_compra_activity.class);
         startActivity(intent);
     }
 
     // Metodo para ir a la actividad de Gastos
     public void goToGastos (View view){
-        Intent intent = new Intent(this, Gastos.class);
+        Intent intent = new Intent(this, Gastos_bbdd_activity.class);
         startActivity(intent);
     }
 
