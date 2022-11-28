@@ -9,8 +9,4 @@ public class Config5 {
     public static final String KEY_HOME = "home";
     public static final String  KEY_ARTICLE = "article";
     public static final String JSON_ARRAY = "result";
-
-    public static  List<String> KEY_ARRAY_ARTICLES = new ArrayList<>() ;
-
-
 }

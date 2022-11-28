@@ -26,8 +26,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.Lista_compra.Lista_compra;
-import com.example.alfred.ui.Lista_compra.Lista_compra_adapter;
-import com.example.alfred.ui.Lista_compra.item_compra;
 import com.example.alfred.ui.login.Login_logo_activity;
 import com.example.alfred.ui.ui.home.HomeActivity;
 
@@ -38,14 +36,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import utils.PreferenceUtils;
 
-public class prueba_lista_compra_activity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-
-    //Para el adapter
-    private ArrayList<prueba_item_compra> prueba_itemList_compra;
-    private prueba_listaCompra_adapter adapter;
+public class prueba_lista_compra_activity extends AppCompatActivity {
 
     EditText et_add_article;
     Button btn_add_article;
@@ -68,31 +63,39 @@ public class prueba_lista_compra_activity extends AppCompatActivity implements A
         listview = findViewById(R.id.listView);
 
 
-            GetMatchData();
+        GetMatchData();
 
         btn_add_article.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               addArticles(et_add_article.getText().toString());
+                addArticles(et_add_article.getText().toString());
                 finish();
                 startActivity(getIntent());
             }
         });
 
-        listview.setOnItemClickListener(this);
-
-        adapter = new prueba_listaCompra_adapter(this,
-                android.R.layout.simple_list_item_1, prueba_itemList_compra);
-
-        listview.setAdapter((ListAdapter) adapter);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Borramos el item de la lista que mantengamos presionado
+        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                prueba_item_compra item = prueba_itemList_compra.get(pos);
-                boolean checked = item.isChecked();
-                prueba_itemList_compra.get(pos).setChecked(!checked);
-                adapter.notify();
+            public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
+
+                Object jsonObj = listview.getItemAtPosition(pos);
+                String jsonString = String.valueOf(jsonObj);
+                String[] ary = jsonString.split("");
+                String[] finale = new String[ary.length -10];
+                int x = 0;
+                for (int i = 9; i < ary.length -1; i++){
+                    while(x + 9 == i){
+                        finale[x] = ary[i];
+                        x++;
+                    }
+                }
+                String art = String.join("", finale);
+                Toast.makeText(prueba_lista_compra_activity.this, art, Toast.LENGTH_SHORT).show();
+                removeArticle(pos, art);
+                finish();
+                startActivity(getIntent());
+                return true;
             }
         });
     }
@@ -157,7 +160,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity implements A
 
                 final HashMap<String, String> employees = new HashMap<>();
                 employees.put("article",  article);
-                Config5.KEY_ARRAY_ARTICLES.add(article);
 
                 list.add(employees);
             }
@@ -167,9 +169,7 @@ public class prueba_lista_compra_activity extends AppCompatActivity implements A
         ListAdapter adapter = new SimpleAdapter(
                 this, list, R.layout.prueba_lista_compra_item,
                 new String[]{"article"},
-                new int[]{R.id.tvarticle,R.id.btn_article});
-
-        Button button = findViewById(R.id.btn_article);
+                new int[]{R.id.tvarticle});
 
         listview.setAdapter(adapter);
 
@@ -178,73 +178,81 @@ public class prueba_lista_compra_activity extends AppCompatActivity implements A
     //------------------------------------------------------------------------------------------------------------------
     //METODO PARA AÑADIR ELEMENTOS A LA LISTA
     public void addArticles(String article){
-            StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    if(response.contains("This user already has a home")){
+        StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("This user already has a home")){
 
 
-                    }else if (response.contains("This user doesnt has a home")) {
+                }else if (response.contains("This user doesnt has a home")) {
 
-                    }
-                    else{
-                        Log.d("Hola", "No compruebo nada");
-                    }
                 }
-            },new Response.ErrorListener(){
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                else{
+                    Log.d("Hola", "No compruebo nada");
                 }
-            }){
-                @Nullable
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
-                    params.put("nameHome",PreferenceUtils.getHome(prueba_lista_compra_activity.this));
-                    params.put("articles", article);
-                    return params;
-                }
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-            requestQueue.add(request);
-        }
+            }
+        },new Response.ErrorListener(){
 
-
-
-    public void removeArticle(Integer pos){
-
-            StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    if(response.contains("Casa Creada")){
-                    }
-                    else{
-                    }
-                }
-            },new Response.ErrorListener(){
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                    Toast.makeText(prueba_lista_compra_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                }
-            }){
-                @Nullable
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params = new HashMap<>();
-                    params.put("nameHome", PreferenceUtils.getHome(prueba_lista_compra_activity.this));
-                    //params.put("articles", listview.get );
-                    return params;
-                }
-            };
-            RequestQueue requestQueue = Volley.newRequestQueue(prueba_lista_compra_activity.this);
-            requestQueue.add(request);
-        }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("nameHome",PreferenceUtils.getHome(prueba_lista_compra_activity.this));
+                params.put("articles", article);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
+
+
+
+    public void removeArticle(Integer pos, String art){
+
+        StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.contains("Casa Creada")){
+                    Toast.makeText(prueba_lista_compra_activity.this, "Eliminado",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                }
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(prueba_lista_compra_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                /*String[] ary = jsonString.split("");
+                String[] finale = new String[ary.length - 9];
+                int x = 0;
+                for (int i = 9; i < ary.length; i++){
+                    while(x + 9 == i){
+                        finale[x] = ary[i];
+                        x++;
+                    }
+                }
+                String art = finale.toString();*/
+                params.put("nameHome", PreferenceUtils.getHome(prueba_lista_compra_activity.this));
+                params.put("articles", art);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(prueba_lista_compra_activity.this);
+        requestQueue.add(request);
+    }
+
 }
