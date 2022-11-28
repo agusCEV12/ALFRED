@@ -47,13 +47,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.Espacios.Profile"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.recovery_pass.RecoverPassActivity"
             android:exported="false">
             <meta-data

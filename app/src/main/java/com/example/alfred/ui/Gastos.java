@@ -160,6 +160,7 @@ public class Gastos extends AppCompatActivity implements AdapterView.OnItemClick
                 View result = view;
                 LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
                 result = inflater.inflate(layout.popup_agregar_gastos, null);
+                Toast.makeText(Gastos.this, "El boton funciona wachos", Toast.LENGTH_SHORT).show();
 
                 // Creamos la ventana del pop-up
                 int width = 700;

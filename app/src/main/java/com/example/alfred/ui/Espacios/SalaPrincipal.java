@@ -107,7 +107,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    // Metodo para ir a la actividad de Taeas
+    // Metodo para ir a la actividad de Tareas
     public void goToTareas (View view){
         Intent intent = new Intent(this, Tareas_bbdd_activity.class);
         startActivity(intent);
