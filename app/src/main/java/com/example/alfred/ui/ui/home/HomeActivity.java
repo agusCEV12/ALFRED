@@ -19,7 +19,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
-import com.example.alfred.ui.login.LoginActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -58,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
                     nameHouseET.setText("");
                     PreferenceUtils.saveHome(nameHouseET.getText().toString(), HomeActivity.this);
                     Intent intent = new Intent(HomeActivity.this, SalaPrincipal.class);
+                    intent.putExtra("home",nameHouse);
                     startActivity(intent);
                     finish();
                 }

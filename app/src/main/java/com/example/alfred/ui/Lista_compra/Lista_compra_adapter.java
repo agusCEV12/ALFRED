@@ -1,4 +1,4 @@
-package com.example.alfred.ui;
+package com.example.alfred.ui.Lista_compra;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

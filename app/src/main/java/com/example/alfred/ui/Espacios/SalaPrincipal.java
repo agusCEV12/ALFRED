@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,24 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.Gastos_bbdd.Gastos_bbdd_activity;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
-import com.example.alfred.ui.Lista_compra;
+import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
+import com.example.alfred.ui.Lista_compra.Lista_compra;
+import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
 import com.example.alfred.ui.login.LoginActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import utils.PreferenceUtils;
 
@@ -31,6 +45,10 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     Button btn_Lista_Tareas;
     Button btn_Lista_Gastos;
 
+    Button buttonTarea3;
+
+    TextView titulo_sala_principal;
+
     ListView lista_menu_sala;
 
     String sharedEmail;
@@ -39,7 +57,10 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
-    @SuppressLint("MissingInflatedId")
+    String URL2 = "https://unscholarly-princip.000webhostapp.com/getHome.php";
+
+
+    @SuppressLint({"MissingInflatedId"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_principal);
@@ -48,6 +69,18 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
         btn_Lista_Tareas = findViewById(R.id.btn_salas_tarea);
         lista_menu_sala = findViewById(R.id.lista_menu_sala);
+        buttonTarea3 = findViewById(R.id.buttonTarea3);
+        getHome();
+        buttonTarea3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SalaPrincipal.this, prueba_lista_compra_activity.class);
+                startActivity(intent);
+            }
+        });
+        //titulo_sala_principal = findViewById(R.id.titulo_sala_principal);
+
+        //titulo_sala_principal.setText(PreferenceUtils.getHome(this));
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Sala);
@@ -76,19 +109,19 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
     // Metodo para ir a la actividad de Taeas
     public void goToTareas (View view){
-        Intent intent = new Intent(this, TareasActivity.class);
+        Intent intent = new Intent(this, Tareas_bbdd_activity.class);
         startActivity(intent);
     }
 
     // Metodo para ir a la actividad de Compras
     public void goToCompras (View view){
-        Intent intent = new Intent(this, Lista_compra.class);
+        Intent intent = new Intent(this, prueba_lista_compra_activity.class);
         startActivity(intent);
     }
 
     // Metodo para ir a la actividad de Gastos
     public void goToGastos (View view){
-        Intent intent = new Intent(this, Gastos.class);
+        Intent intent = new Intent(this, Gastos_bbdd_activity.class);
         startActivity(intent);
     }
 
@@ -145,5 +178,39 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
             default:
                 break;
         }
+    }
+
+    public void getHome (){
+        StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response != null || !response.equals("")){
+
+                    PreferenceUtils.saveHome(response, SalaPrincipal.this);
+                    Toast.makeText(SalaPrincipal.this,
+                            PreferenceUtils.getHome(SalaPrincipal.this),
+                            Toast.LENGTH_SHORT).show();
+
+                } else{
+                    Toast.makeText(SalaPrincipal.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        },new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SalaPrincipal.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("email",PreferenceUtils.getEmail(SalaPrincipal.this));
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
     }
 }
