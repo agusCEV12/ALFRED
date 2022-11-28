@@ -1,20 +1,12 @@
 package com.example.alfred.ui;
 
-import static com.example.alfred.R.*;
+import static com.example.alfred.R.id;
+import static com.example.alfred.R.layout;
 
 import android.content.DialogInterface;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,14 +17,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
-import com.example.alfred.ui.ListaTareas.Tareas_adapter;
-import com.example.alfred.ui.ListaTareas.item_tarea;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -61,12 +57,12 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
 
         //Aqui habria que hacer que los elementos salgan de la BBDD "Supongo"
         itemList_compra = new ArrayList<>();
-        itemList_compra.add(new item_compra("Papel de cocina"));
+        /*itemList_compra.add(new item_compra("Papel de cocina"));
         itemList_compra.add(new item_compra("Pan"));
         itemList_compra.add(new item_compra("Detergente"));
         itemList_compra.add(new item_compra("Tomates"));
         itemList_compra.add(new item_compra("Cebolla"));
-        itemList_compra.add(new item_compra("Carne Picada"));
+        itemList_compra.add(new item_compra("Carne Picada"));*/
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(id.main_layout_Compra);

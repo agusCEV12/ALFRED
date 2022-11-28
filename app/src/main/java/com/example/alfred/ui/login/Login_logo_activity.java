@@ -6,8 +6,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.ui.home.HomeActivity;
+
+import utils.PreferenceUtils;
 
 public class Login_logo_activity  extends AppCompatActivity {
 
@@ -21,6 +26,8 @@ public class Login_logo_activity  extends AppCompatActivity {
 
         btn_login = findViewById(R.id.btn_iniciar_sesion);
         btn_register = findViewById(R.id.btn_registrarse);
+
+        comprobarSharedPrefs();
     }
 
     public  void GotoLogin (View view){
@@ -36,5 +43,23 @@ public class Login_logo_activity  extends AppCompatActivity {
     public  void GotoEspacio(View view){
         Intent intent = new Intent(this, EspacioActivity.class);
         startActivity(intent);
+    }
+
+    public void comprobarSharedPrefs(){
+
+        try {
+            if ((PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals(""))
+            && PreferenceUtils.getHome(this) != null){
+                Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+            } else if ((PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals(""))
+                    && PreferenceUtils.getHome(this) == null || PreferenceUtils.getHome(this).equals("")){
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+            }
+        } catch (Exception a){
+
+        }
+
     }
 }

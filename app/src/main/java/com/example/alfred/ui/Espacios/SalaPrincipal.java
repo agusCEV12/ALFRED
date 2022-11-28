@@ -3,11 +3,13 @@ package com.example.alfred.ui.Espacios;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,9 @@ import com.example.alfred.R;
 import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.Lista_compra;
+import com.example.alfred.ui.login.LoginActivity;
+
+import utils.PreferenceUtils;
 
 public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -28,6 +33,8 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
     ListView lista_menu_sala;
 
+    String sharedEmail;
+
     // Variables para el menu de navegacion lateral
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -35,7 +42,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opciones);
+        setContentView(R.layout.activity_sala_principal);
 
         btn_Lista_Compra = findViewById(R.id.btn_salas_compra);
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
@@ -55,9 +62,19 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
         lista_menu_sala.setOnItemClickListener(this);
 
+        comprobarSharedPrefs();
+
     }
 
-    // Metodo para ir a la actividad de Tareas
+    private void comprobarSharedPrefs() {
+        if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+            sharedEmail = PreferenceUtils.getEmail(this);
+        } else {
+            Toast.makeText(this, "Problema con el Shared Preference Email", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // Metodo para ir a la actividad de Taeas
     public void goToTareas (View view){
         Intent intent = new Intent(this, TareasActivity.class);
         startActivity(intent);
@@ -108,8 +125,22 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(intent2);
                 break;
             case 4:
-                Intent intent3 = new Intent(this, Profile.class);
-                startActivity(intent3);
+                Log.d("mi cuenta", "Hemos pulsado en boton mi cuenta del menu lateral en Sala principal");
+                break;
+            case 5:
+                try {
+                    if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+                        PreferenceUtils.deleteSharedPre(this);
+                        Toast.makeText(this, "Funciona el Log Out", Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(this, LoginActivity.class);
+                        startActivity(intent3);
+                    } else{
+                        Toast.makeText(this, "Funciona el LogOut pero el mail es null", Toast.LENGTH_SHORT).show();
+                    }
+
+                }catch (Exception a){
+                    Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;
