@@ -15,11 +15,15 @@
 
         <TextView
             android:id="@+id/tvtask"
-            android:layout_width="206dp"
-            android:layout_height="53dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:gravity="center" />
+            android:layout_marginRight="0dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

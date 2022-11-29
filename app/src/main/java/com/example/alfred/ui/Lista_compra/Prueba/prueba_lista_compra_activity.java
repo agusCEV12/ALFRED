@@ -25,9 +25,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
-import com.example.alfred.ui.Lista_compra.Lista_compra;
-import com.example.alfred.ui.login.Login_logo_activity;
-import com.example.alfred.ui.ui.home.HomeActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +33,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import utils.PreferenceUtils;
 
@@ -58,8 +54,8 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prueba_lista_compra);
-        et_add_article = findViewById(R.id.et_add_article);
-        btn_add_article = findViewById(R.id.btn_add_article);
+        et_add_article = findViewById(R.id.et_add_bills);
+        btn_add_article = findViewById(R.id.btn_add_bills);
         listview = findViewById(R.id.listView);
 
 
@@ -253,6 +249,11 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(prueba_lista_compra_activity.this);
         requestQueue.add(request);
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
 
 }

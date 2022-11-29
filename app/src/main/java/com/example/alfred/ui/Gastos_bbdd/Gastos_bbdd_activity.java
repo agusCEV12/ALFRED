@@ -2,6 +2,7 @@ package com.example.alfred.ui.Gastos_bbdd;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
+import com.example.alfred.ui.Espacios.SalaPrincipal;
 import com.example.alfred.ui.Lista_compra.Prueba.Config5;
 import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
 
@@ -234,6 +236,11 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
+    }
+    public void goToOptions (View view) {
+        Intent intent = new Intent(this, SalaPrincipal.class);
+        startActivity(intent);
+        finish();
     }
 
 }
