@@ -21,6 +21,7 @@ public class EspacioActivity extends AppCompatActivity {
     ImageButton imageButton;
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    ImageButton buttonBack;
 
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,8 @@ public class EspacioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imageButton = findViewById(R.id.img_btn_espacio);
+        buttonBack = findViewById(R.id.buttonBack1);
+
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +49,14 @@ public class EspacioActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

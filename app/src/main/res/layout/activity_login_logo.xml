@@ -28,48 +28,36 @@
         android:id="@+id/btn_iniciar_sesion"
         android:layout_width="400dp"
         android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="#FFCCBC"
         android:fontFamily="@font/montserrat_bold"
+        android:onClick="GotoLogin"
         android:text="Iniciar Sesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:onClick="GotoLogin"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/btn_registrarse"
         android:layout_width="400dp"
         android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="#EFEFEF"
         android:bottomLeftRadius="10dp"
         android:bottomRightRadius="10dp"
         android:fontFamily="@font/montserrat_bold"
+        android:onClick="GotoRegister"
         android:text="Registrarse"
         android:topLeftRadius="10dp"
         android:topRightRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_iniciar_sesion"
-        android:onClick="GotoRegister"/>
-    <Button
-        android:id="@+id/btn_espacio"
-        android:layout_width="400dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="#EFEFEF"
-        android:bottomLeftRadius="10dp"
-        android:bottomRightRadius="10dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Espacio"
-        android:topLeftRadius="10dp"
-        android:topRightRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_registrarse"
-        android:onClick="GotoEspacio"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_iniciar_sesion" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
