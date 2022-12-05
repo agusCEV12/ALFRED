@@ -33,6 +33,7 @@ import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
 import com.example.alfred.ui.Lista_compra.Lista_compra;
 import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
 import com.example.alfred.ui.login.LoginActivity;
+import com.example.alfred.ui.login.Login_logo_activity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,11 +42,15 @@ import utils.PreferenceUtils;
 
 public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    // DECLARACIÓN DE VARIABLES
     Button btn_Lista_Compra;
     Button btn_Lista_Tareas;
     Button btn_Lista_Gastos;
 
     Button buttonTarea3;
+    Button buttonCocina;
+    Button buttonbanio;
+    Button buttonOtros;
 
     TextView titulo_sala_principal;
 
@@ -69,17 +74,13 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
         btn_Lista_Tareas = findViewById(R.id.btn_salas_tarea);
         lista_menu_sala = findViewById(R.id.lista_menu_sala);
-        getHome();
-        /*buttonTarea3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SalaPrincipal.this, prueba_lista_compra_activity.class);
-                startActivity(intent);
-            }
-        });*/
-        //titulo_sala_principal = findViewById(R.id.titulo_sala_principal);
 
-        //titulo_sala_principal.setText(PreferenceUtils.getHome(this));
+        buttonCocina = findViewById(R.id.buttonCocina);
+        buttonbanio = findViewById(R.id.buttonbanio);
+        buttonOtros = findViewById(R.id.buttonOtros);
+
+
+        getHome();
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Sala);
@@ -94,15 +95,16 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
 
         lista_menu_sala.setOnItemClickListener(this);
 
+        // METODO QUE COMPRUEBA LA SHARED PREFERENCE PARA SABER SI TENEMOS CREDENCIALES GUARDADAS
         comprobarSharedPrefs();
 
     }
 
+    // COMPRUEBA SI TENEMOS UN USUARIO GUARDADO
     private void comprobarSharedPrefs() {
         if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
             sharedEmail = PreferenceUtils.getEmail(this);
         } else {
-            Toast.makeText(this, "Problema con el Shared Preference Email", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -111,6 +113,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         Intent intent = new Intent(this, Tareas_bbdd_activity.class);
         startActivity(intent);
     }
+
 
     // Metodo para ir a la actividad de Compras
     public void goToCompras (View view){
@@ -137,6 +140,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     }
 
 
+    // SWITCH DEL MENÚ LATERAL, QUE NOS LLEVA A LAS DIFERENTES PANTALLAS
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -160,15 +164,14 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 Intent intent4 = new Intent(this, profileActivity.class);
                 startActivity(intent4);
                 break;
-            case 5:
+            case 5: // ESTE ES EL CASO DE LA OPCIÓN DE CERRAR SESIÓN
                 try {
                     if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
                         PreferenceUtils.deleteSharedPre(this);
-                        Toast.makeText(this, "Funciona el Log Out", Toast.LENGTH_SHORT).show();
-                        Intent intent3 = new Intent(this, LoginActivity.class);
+                        Intent intent3 = new Intent(this, Login_logo_activity.class);
                         startActivity(intent3);
                     } else{
-                        Toast.makeText(this, "Funciona el LogOut pero el mail es null", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }catch (Exception a){
@@ -180,6 +183,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
+    // NOS CONECTAMOS CON LA BASE DE DATOS PARA OPTENER LA CASA ASOCIADA AL EMAIL EN CASO DE HABERLA
     public void getHome (){
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
             @Override

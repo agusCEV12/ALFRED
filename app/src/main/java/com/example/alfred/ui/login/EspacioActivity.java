@@ -26,7 +26,7 @@ public class EspacioActivity extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.prueba);
+        setContentView(R.layout.activity_espacio);
 
         drawerLayout = findViewById(R.id.main_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(

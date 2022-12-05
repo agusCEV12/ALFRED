@@ -44,9 +44,6 @@ public class Login_logo_activity  extends AppCompatActivity  {
         btn_login = findViewById(R.id.btn_iniciar_sesion);
         btn_register = findViewById(R.id.btn_registrarse);
 
-        //Log.d("email es:", PreferenceUtils.getEmail(this));
-        //Log.i("la pass es: ", PreferenceUtils.getPassword(this));
-
         comprobarSharedPrefs();
 
     }
@@ -96,15 +93,12 @@ public class Login_logo_activity  extends AppCompatActivity  {
                    startActivity(intent);
                 }
                 else{
-                    Toast.makeText(Login_logo_activity.this, response, Toast.LENGTH_SHORT).show();
-                    Log.d("Hola", "No compruebo nada");
                 }
             }
         },new Response.ErrorListener(){
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
