@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,12 +13,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -30,8 +25,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
-import com.example.alfred.ui.Gastos;
-import com.example.alfred.ui.ListaTareas.TareasActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,17 +38,14 @@ import utils.PreferenceUtils;
 
 public class prueba_lista_compra_activity extends AppCompatActivity {
 
+    // DECLARACION DE VARIABLES
     EditText et_add_article;
     Button btn_add_article;
     ListView listview;
     String home;
     ProgressDialog mProgressDialog;
 
-    // Variables para el menu de navegacion lateral
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle actionBarDrawerToggle;
-    ListView lista_menu_compras;
-
+    // URL´S QUE CONECTAN CON LAS BBDD
     String URL = "https://unscholarly-princip.000webhostapp.com/addArticles.php";
     String URL2 = "https://unscholarly-princip.000webhostapp.com/deleteArticle.php";
 
@@ -64,26 +54,12 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Asignación de variables
         setContentView(R.layout.prueba_lista_compra);
         et_add_article = findViewById(R.id.et_add_bills);
         btn_add_article = findViewById(R.id.btn_add_bills);
         listview = findViewById(R.id.listView);
 
-        // localizamos el drawer menu, y lo mostramos
-        drawerLayout = findViewById(R.id.main_layout_Compras);
-        lista_menu_compras = findViewById(R.id.lista_menu_compras);   //Esto es el listView en si para poder reconocer el item
-        actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                R.string.app_name,
-                R.string.app_name
-        );
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
+        // METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
         GetMatchData();
 
         btn_add_article.setOnClickListener(new View.OnClickListener() {
@@ -95,11 +71,14 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------------------------------
+
         // Borramos el item de la lista que mantengamos presionado
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
 
+                // SCRIPT QUE LIMPIA EL JSON QUE OBTENEMOS AL PULSAR UN ITEM DE LA LISTA
                 Object jsonObj = listview.getItemAtPosition(pos);
                 String jsonString = String.valueOf(jsonObj);
                 String[] ary = jsonString.split("");
@@ -120,6 +99,8 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         });
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+
     private void GetMatchData() {
 
         home = PreferenceUtils.getHome(this);
@@ -139,7 +120,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            //Toast.makeText(prueba_lista_compra_activity.this, response, Toast.LENGTH_SHORT).show();
                             showJSON(response);
                             mProgressDialog.dismiss();
 
@@ -152,7 +132,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        //Toast.makeText(prueba_lista_compra_activity.this, ""+error, Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -207,14 +186,13 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
 
                 }
                 else{
-                    Log.d("Hola", "No compruebo nada");
+
                 }
             }
         },new Response.ErrorListener(){
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(prueba_lista_compra_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -229,6 +207,9 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
+
+    //------------------------------------------------------------------------------------------------------------------
+
 
     public void removeArticle(Integer pos, String art){
 
@@ -246,7 +227,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(prueba_lista_compra_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -265,43 +245,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         Intent intent = new Intent(this, SalaPrincipal.class);
         startActivity(intent);
         finish();
-    }
-
-    //Bloque de Metodos del Menu -------------------------------------------------------------------
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
-        actionBarDrawerToggle.onOptionsItemSelected(item);
-        return true;
-    }
-
-    @Override
-    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        actionBarDrawerToggle.syncState();
-    }
-
-    @CallSuper
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (i){
-            case 0:
-                Intent intent = new Intent(this, SalaPrincipal.class);
-                startActivity(intent);
-                break;
-            case 1:
-                recreate();
-                break;
-            case 2:
-                Intent intent1 = new Intent(this, TareasActivity.class);
-                startActivity(intent1);
-                break;
-            case 3:
-                Intent intent2 = new Intent(this, Gastos.class);
-                startActivity(intent2);
-                break;
-            default:
-                break;
-        }
     }
 
 }

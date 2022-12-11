@@ -41,13 +41,14 @@ import utils.PreferenceUtils;
 
 public class Gastos_bbdd_activity extends AppCompatActivity {
 
-    //Declaración de variables
+    // DECLARACIÓN DE VARIABLES
     EditText et_add_bill;
     Button btn_add_bill;
     ListView listview;
     String home;
     ProgressDialog mProgressDialog;
 
+    // URL´S PARA CONECTARNOS A LAS BBDD
     String URL = "https://unscholarly-princip.000webhostapp.com/addBill.php";
     String URL2 = "https://unscholarly-princip.000webhostapp.com/deleteBill.php";
 
@@ -56,13 +57,12 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gastos_bbdd);
-
-        //Asignación de variables
         et_add_bill = findViewById(R.id.et_add_bills);
         btn_add_bill = findViewById(R.id.btn_add_bills);
         listview = findViewById(R.id.lv_bills_bbdd);
 
 
+        //METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
         GetMatchData();
 
         btn_add_bill.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +79,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
 
+                // SCRIPT QUE LIMPIA EL JSON AL PULSAR UN ITEM DE LA LISTA
                 Object jsonObj = listview.getItemAtPosition(pos);
                 String jsonString = String.valueOf(jsonObj);
                 String[] ary = jsonString.split("");
@@ -91,6 +92,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
                     }
                 }
                 String bill = String.join("", finale);
+                Toast.makeText(Gastos_bbdd_activity.this, bill, Toast.LENGTH_SHORT).show();
                 removeBills(pos, bill);
                 finish();
                 startActivity(getIntent());
@@ -99,6 +101,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         });
     }
 
+    // METODO QUE PERMITE IMPRIMER POR PATALLA DE LA BBDD
     private void GetMatchData() {
 
         home = PreferenceUtils.getHome(this);
@@ -153,19 +156,19 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject jo = result.getJSONObject(i);
-                String article = jo.getString("article");
+                String bill = jo.getString("bill");
 
-                final HashMap<String, String> employees = new HashMap<>();
-                employees.put("article",  article);
+                final HashMap<String, String> bills = new HashMap<>();
+                bills.put("bill",  bill);
 
-                list.add(employees);
+                list.add(bills);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         ListAdapter adapter = new SimpleAdapter(
                 this, list, R.layout.item_gastos_bbdd,
-                new String[]{"article"},
+                new String[]{"bill"},
                 new int[]{R.id.tvbill});
 
         listview.setAdapter(adapter);
@@ -189,7 +192,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Gastos_bbdd_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -205,8 +208,9 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //------------------------------------------------------------------------------------------------------------------
 
-
+    // METODO PARA BORRAR ELEMENTOS DE LA LISTA
     public void removeBills(Integer pos, String bill){
 
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
