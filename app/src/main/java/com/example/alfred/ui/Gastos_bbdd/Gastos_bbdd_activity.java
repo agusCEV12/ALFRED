@@ -41,6 +41,7 @@ import utils.PreferenceUtils;
 
 public class Gastos_bbdd_activity extends AppCompatActivity {
 
+    //Declaración de variables
     EditText et_add_bill;
     Button btn_add_bill;
     ListView listview;
@@ -55,6 +56,8 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gastos_bbdd);
+
+        //Asignación de variables
         et_add_bill = findViewById(R.id.et_add_bills);
         btn_add_bill = findViewById(R.id.btn_add_bills);
         listview = findViewById(R.id.lv_bills_bbdd);
@@ -88,7 +91,6 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
                     }
                 }
                 String bill = String.join("", finale);
-                Toast.makeText(Gastos_bbdd_activity.this, bill, Toast.LENGTH_SHORT).show();
                 removeBills(pos, bill);
                 finish();
                 startActivity(getIntent());
@@ -151,19 +153,19 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
 
             for (int i = 0; i < result.length(); i++) {
                 JSONObject jo = result.getJSONObject(i);
-                String bill = jo.getString("bill");
+                String article = jo.getString("article");
 
-                final HashMap<String, String> bills = new HashMap<>();
-                bills.put("bill",  bill);
+                final HashMap<String, String> employees = new HashMap<>();
+                employees.put("article",  article);
 
-                list.add(bills);
+                list.add(employees);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         ListAdapter adapter = new SimpleAdapter(
                 this, list, R.layout.item_gastos_bbdd,
-                new String[]{"bill"},
+                new String[]{"article"},
                 new int[]{R.id.tvbill});
 
         listview.setAdapter(adapter);
@@ -187,7 +189,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Gastos_bbdd_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable

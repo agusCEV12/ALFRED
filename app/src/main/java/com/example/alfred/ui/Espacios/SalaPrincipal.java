@@ -41,6 +41,7 @@ import utils.PreferenceUtils;
 
 public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    // Declaración de variables
     Button btn_Lista_Compra;
     Button btn_Lista_Tareas;
     Button btn_Lista_Gastos;
@@ -65,21 +66,12 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_principal);
 
+        //Asignación de variables
         btn_Lista_Compra = findViewById(R.id.btn_salas_compra);
         btn_Lista_Gastos = findViewById(R.id.btn_salas_gastos);
         btn_Lista_Tareas = findViewById(R.id.btn_salas_tarea);
         lista_menu_sala = findViewById(R.id.lista_menu_sala);
         getHome();
-        /*buttonTarea3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SalaPrincipal.this, prueba_lista_compra_activity.class);
-                startActivity(intent);
-            }
-        });*/
-        //titulo_sala_principal = findViewById(R.id.titulo_sala_principal);
-
-        //titulo_sala_principal.setText(PreferenceUtils.getHome(this));
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Sala);
@@ -187,9 +179,9 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 if(response != null || !response.equals("")){
 
                     PreferenceUtils.saveHome(response, SalaPrincipal.this);
-                    Toast.makeText(SalaPrincipal.this,
+                    /*Toast.makeText(SalaPrincipal.this,
                             PreferenceUtils.getHome(SalaPrincipal.this),
-                            Toast.LENGTH_SHORT).show();
+                            Toast.LENGTH_SHORT).show();*/
 
                 } else{
                     Toast.makeText(SalaPrincipal.this, "Error", Toast.LENGTH_SHORT).show();
