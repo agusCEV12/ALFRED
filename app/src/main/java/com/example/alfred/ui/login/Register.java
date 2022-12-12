@@ -3,10 +3,6 @@ package com.example.alfred.ui.login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
-import com.example.alfred.ui.Espacios.SalaPrincipal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -117,7 +115,7 @@ public class Register extends AppCompatActivity {
                             startActivity(intent);
                         }
                         else{
-                            Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, "Registrado Correctamente", Toast.LENGTH_SHORT).show();
                             Log.d("el error es:", response);
                         }
                     }

@@ -20,18 +20,19 @@
             android:background="@color/MainColor"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/textProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="PERFIL"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="10dp"
-            tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/textProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="PERFIL"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
 
         <ImageButton
             android:id="@+id/btn_back_profile"
@@ -49,31 +50,32 @@
             app:srcCompat="@drawable/atras"
             tools:ignore="MissingConstraints" />
 
-        <ImageView
-            android:id="@+id/imageProfile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
-            app:layout_constraintEnd_toStartOf="@+id/textUserProfile"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:srcCompat="@drawable/user"
-            tools:ignore="MissingConstraints" />
+    <ImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.553"
+        app:srcCompat="@drawable/user"
+        tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/textUserProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="NOMBRE USUARIO"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:layout_constraintVertical_bias="0.047" />
+    <TextView
+        android:id="@+id/textUserProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="PEPE"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.057" />
 
         <TextView
             android:id="@+id/textView8"

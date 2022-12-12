@@ -101,16 +101,18 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat"
-            android:hint="Manten pulsada una tarea para eliminarla"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_bills"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lv_tareas_bbdd" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="603dp"
+        android:fontFamily="@font/montserrat"
+        android:hint="Manten pulsada una tarea para eliminarla"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_bills"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lv_tareas_bbdd"
+        app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
