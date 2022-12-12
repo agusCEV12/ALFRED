@@ -41,12 +41,14 @@ import utils.PreferenceUtils;
 
 public class Gastos_bbdd_activity extends AppCompatActivity {
 
+    // DECLARACIÓN DE VARIABLES
     EditText et_add_bill;
     Button btn_add_bill;
     ListView listview;
     String home;
     ProgressDialog mProgressDialog;
 
+    // URL´S PARA CONECTARNOS A LAS BBDD
     String URL = "https://unscholarly-princip.000webhostapp.com/addBill.php";
     String URL2 = "https://unscholarly-princip.000webhostapp.com/deleteBill.php";
 
@@ -60,6 +62,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         listview = findViewById(R.id.lv_bills_bbdd);
 
 
+        //METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
         GetMatchData();
 
         btn_add_bill.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +79,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
 
+                // SCRIPT QUE LIMPIA EL JSON AL PULSAR UN ITEM DE LA LISTA
                 Object jsonObj = listview.getItemAtPosition(pos);
                 String jsonString = String.valueOf(jsonObj);
                 String[] ary = jsonString.split("");
@@ -97,6 +101,7 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         });
     }
 
+    // METODO QUE PERMITE IMPRIMER POR PATALLA DE LA BBDD
     private void GetMatchData() {
 
         home = PreferenceUtils.getHome(this);
@@ -203,8 +208,9 @@ public class Gastos_bbdd_activity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //------------------------------------------------------------------------------------------------------------------
 
-
+    // METODO PARA BORRAR ELEMENTOS DE LA LISTA
     public void removeBills(Integer pos, String bill){
 
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {

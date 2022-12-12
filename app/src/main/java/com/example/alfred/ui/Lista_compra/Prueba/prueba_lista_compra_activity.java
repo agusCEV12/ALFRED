@@ -38,13 +38,14 @@ import utils.PreferenceUtils;
 
 public class prueba_lista_compra_activity extends AppCompatActivity {
 
+    // DECLARACION DE VARIABLES
     EditText et_add_article;
     Button btn_add_article;
     ListView listview;
     String home;
     ProgressDialog mProgressDialog;
 
-
+    // URL´S QUE CONECTAN CON LAS BBDD
     String URL = "https://unscholarly-princip.000webhostapp.com/addArticles.php";
     String URL2 = "https://unscholarly-princip.000webhostapp.com/deleteArticle.php";
 
@@ -58,7 +59,7 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         btn_add_article = findViewById(R.id.btn_add_bills);
         listview = findViewById(R.id.listView);
 
-
+        // METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
         GetMatchData();
 
         btn_add_article.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +71,14 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
             }
         });
 
+        //------------------------------------------------------------------------------------------------------------------
+
         // Borramos el item de la lista que mantengamos presionado
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
 
+                // SCRIPT QUE LIMPIA EL JSON QUE OBTENEMOS AL PULSAR UN ITEM DE LA LISTA
                 Object jsonObj = listview.getItemAtPosition(pos);
                 String jsonString = String.valueOf(jsonObj);
                 String[] ary = jsonString.split("");
@@ -87,7 +91,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
                     }
                 }
                 String art = String.join("", finale);
-                Toast.makeText(prueba_lista_compra_activity.this, art, Toast.LENGTH_SHORT).show();
                 removeArticle(pos, art);
                 finish();
                 startActivity(getIntent());
@@ -95,6 +98,8 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
             }
         });
     }
+
+    //------------------------------------------------------------------------------------------------------------------
 
     private void GetMatchData() {
 
@@ -115,12 +120,10 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response != null) {
-                            Toast.makeText(prueba_lista_compra_activity.this, response, Toast.LENGTH_SHORT).show();
                             showJSON(response);
                             mProgressDialog.dismiss();
 
                         } else {
-                            Toast.makeText(prueba_lista_compra_activity.this, "me muero", Toast.LENGTH_SHORT).show();
                             showJSON(response);
                             mProgressDialog.dismiss();
                         }
@@ -129,7 +132,6 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(prueba_lista_compra_activity.this, ""+error, Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -184,14 +186,13 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
 
                 }
                 else{
-                    Log.d("Hola", "No compruebo nada");
+
                 }
             }
         },new Response.ErrorListener(){
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(Login_logo_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -207,6 +208,7 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //------------------------------------------------------------------------------------------------------------------
 
 
     public void removeArticle(Integer pos, String art){
@@ -225,23 +227,12 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(prueba_lista_compra_activity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                /*String[] ary = jsonString.split("");
-                String[] finale = new String[ary.length - 9];
-                int x = 0;
-                for (int i = 9; i < ary.length; i++){
-                    while(x + 9 == i){
-                        finale[x] = ary[i];
-                        x++;
-                    }
-                }
-                String art = finale.toString();*/
                 params.put("nameHome", PreferenceUtils.getHome(prueba_lista_compra_activity.this));
                 params.put("articles", art);
                 return params;

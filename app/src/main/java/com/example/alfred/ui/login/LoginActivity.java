@@ -34,8 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText userName, password;
     private String strUserName, strPassword;
     ImageButton imageButton;
-    //URL del archivo php de nuestro LOGIN
-    //private static final String URL2="http://192.168.0.14/alfred/login.php";
+
     private static  final String URL2 ="https://unscholarly-princip.000webhostapp.com/login.php";
     private static  final String URL3 ="https://unscholarly-princip.000webhostapp.com/checkHome.php";
 
@@ -91,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                         checkHome();
                     }
                     else{
-                        Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     }
                 }
             },new Response.ErrorListener(){
@@ -99,7 +97,6 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
                 }
             }){
                 @Nullable
@@ -123,7 +120,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(response.contains("This user already has a home")){
-                    Toast.makeText(LoginActivity.this, "Holiwi", Toast.LENGTH_SHORT).show();
                     userName.setText("");
                     Intent intent = new Intent(LoginActivity.this, SalaPrincipal.class);
                     intent.putExtra("user", strUserName);

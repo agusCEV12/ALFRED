@@ -62,15 +62,12 @@ public class HomeActivity extends AppCompatActivity {
                     finish();
                 }
                 else{
-                    Toast.makeText(HomeActivity.this,"Este usuario ya tiene una casa", Toast.LENGTH_LONG).show();
                     Log.d("el error es:", response);
                 }
             }
         },new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(HomeActivity.this, error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable

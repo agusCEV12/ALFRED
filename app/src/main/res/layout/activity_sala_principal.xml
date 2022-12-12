@@ -81,7 +81,7 @@
 
 
             <Button
-                android:id="@+id/buttonTarea4"
+                android:id="@+id/buttonOtros"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="8dp"
@@ -89,35 +89,30 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="OTROS"
                 android:textSize="10sp"
+                android:onClick="goToTareas"
                 app:layout_constraintBottom_toBottomOf="@+id/imageBackgroundTop3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.029"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_salas_tarea" />
 
+
             <TextView
                 android:id="@+id/titulo_sala_principal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:clickable="true"
-                android:cursorVisible="true"
-                android:editable="true"
                 android:focusableInTouchMode="true"
                 android:fontFamily="@font/montserrat_bold"
-                android:inputType="text"
-                android:singleLine="true"
                 android:text="PISO COMPARTIDO"
                 android:textColor="#000000"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.025"
-                tools:ignore="Deprecated" />
-
+                app:layout_constraintVertical_bias="0.039" />
 
             <Button
                 android:id="@+id/btn_salas_tarea"
@@ -137,7 +132,7 @@
                 app:layout_constraintVertical_bias="0.148" />
 
             <Button
-                android:id="@+id/buttonTarea2"
+                android:id="@+id/buttonbanio"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
                 android:layout_marginEnd="8dp"
@@ -145,6 +140,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="BAÑO"
                 android:textSize="10sp"
+                android:onClick="goToTareas"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.946"
@@ -160,6 +156,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="COCINA"
                 android:textSize="10sp"
+                android:onClick="goToTareas"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.485"
@@ -201,6 +198,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 app:layout_constraintVertical_bias="0.039" />
+
+            <ImageButton
+                android:id="@+id/invitarPersonas"
+                android:layout_width="32dp"
+                android:layout_height="42dp"
+                android:adjustViewBounds="false"
+                android:background="@color/MainColor"
+                android:fitsSystemWindows="false"
+                android:onClick="goPopUpInv"
+                android:scaleType="fitStart"
+                app:layout_constraintBottom_toTopOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.846"
+                app:layout_constraintStart_toEndOf="@+id/titulo_sala_principal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.258"
+                app:srcCompat="@drawable/agregar_usuario" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

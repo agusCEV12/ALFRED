@@ -1,5 +1,7 @@
 package com.example.alfred.ui.Lista_compra.Prueba;
 
+
+// CADA ITEM DE LA LISTA DE PRODUCTOS DE LA COMPRA
 public class prueba_item_compra {
     private String text;
 

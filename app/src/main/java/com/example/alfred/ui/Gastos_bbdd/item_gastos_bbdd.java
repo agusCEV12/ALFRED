@@ -1,5 +1,6 @@
 package com.example.alfred.ui.Gastos_bbdd;
 
+// CADA ITEM DE LA LISTA DE GASTOS
 public class item_gastos_bbdd {
 
     private String text;
