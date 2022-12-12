@@ -29,8 +29,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.Espacios.profileActivity;
 import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.Gastos_bbdd.Gastos_bbdd_activity;
 import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
+import com.example.alfred.ui.login.Login_logo_activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -299,16 +303,36 @@ public class prueba_lista_compra_activity extends AppCompatActivity implements A
                 recreate();
                 break;
             case 2:
-                Intent intent1 = new Intent(this, TareasActivity.class);
+                Intent intent1 = new Intent(this, Tareas_bbdd_activity.class);
                 startActivity(intent1);
                 break;
             case 3:
-                Intent intent2 = new Intent(this, Gastos.class);
+                Intent intent2 = new Intent(this, Gastos_bbdd_activity.class);
                 startActivity(intent2);
+                break;
+            case 4:
+                Intent intent4 = new Intent(this, profileActivity.class);
+                startActivity(intent4);
+                break;
+            case 5: // ESTE ES EL CASO DE LA OPCIÓN DE CERRAR SESIÓN
+                try {
+                    if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+                        PreferenceUtils.deleteSharedPre(this);
+                        Intent intent3 = new Intent(this, Login_logo_activity.class);
+                        startActivity(intent3);
+                    } else{
+
+                    }
+
+                }catch (Exception a){
+                    Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
+                }
                 break;
             default:
                 break;
         }
     }
+    // Cierre del Bloque de Metodos del Menu -------------------------------------------------------
+
 
 }
