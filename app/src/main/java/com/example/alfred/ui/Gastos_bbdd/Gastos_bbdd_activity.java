@@ -72,20 +72,20 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_gastos_bbdd);
         et_add_bill = findViewById(R.id.et_add_bills);
         btn_add_bill = findViewById(R.id.btn_add_bills);
-        listview = findViewById(R.id.lv_bills_bbdd);
+        //listview = findViewById(R.id.lv_bills_bbdd);
 
 
         //METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
-        GetMatchData();
+        //GetMatchData();
 
-        btn_add_bill.setOnClickListener(new View.OnClickListener() {
+        /*btn_add_bill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addBills(et_add_bill.getText().toString());
                 finish();
                 startActivity(getIntent());
             }
-        });
+        });*/
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Gastos);
@@ -102,7 +102,8 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
         lista_menu_gastos.setOnItemClickListener(this); //Para poder reconocer el item de la lista que estamos clickando
 
         // Borramos el item de la lista que mantengamos presionado
-        listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+        /*listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
 
@@ -125,10 +126,11 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
                 startActivity(getIntent());
                 return true;
             }
-        });
+        });*/
     }
 
     // METODO QUE PERMITE IMPRIMER POR PATALLA DE LA BBDD
+    /*
     private void GetMatchData() {
 
         home = PreferenceUtils.getHome(this);
@@ -174,7 +176,8 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
+     */
+/*
     private void showJSON(String response) {
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         try {
@@ -200,10 +203,11 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
 
         listview.setAdapter(adapter);
 
-    }
+    }*/
 
     //------------------------------------------------------------------------------------------------------------------
     //METODO PARA AÑADIR ELEMENTOS A LA LISTA
+    /*
     public void addBills(String bill){
         StringRequest request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
@@ -235,9 +239,12 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
         requestQueue.add(request);
     }
 
+     */
+
     //------------------------------------------------------------------------------------------------------------------
 
     // METODO PARA BORRAR ELEMENTOS DE LA LISTA
+    /*
     public void removeBills(Integer pos, String bill){
 
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
@@ -270,11 +277,14 @@ public class Gastos_bbdd_activity extends AppCompatActivity implements AdapterVi
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
+    */
     public void goToOptions (View view) {
         Intent intent = new Intent(this, SalaPrincipal.class);
         startActivity(intent);
         finish();
     }
+
+
 
     //Bloque de Metodos del Menu -------------------------------------------------------------------
 

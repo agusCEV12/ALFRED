@@ -189,7 +189,6 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         actionBarDrawerToggle.syncState();
     }
 
-
     // SWITCH DEL MENÚ LATERAL, QUE NOS LLEVA A LAS DIFERENTES PANTALLAS
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -221,9 +220,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                         Intent intent3 = new Intent(this, Login_logo_activity.class);
                         startActivity(intent3);
                     } else{
-
                     }
-
                 }catch (Exception a){
                     Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
                 }
@@ -232,7 +229,6 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 break;
         }
     }
-
     // NOS CONECTAMOS CON LA BASE DE DATOS PARA OPTENER LA CASA ASOCIADA AL EMAIL EN CASO DE HABERLA
     public void getHome (){
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {
