@@ -85,7 +85,6 @@ public class Register extends AppCompatActivity {
         }
     }
 
-
     //Metodo para registrarnos pasando las variables al host y ejecutar el php
     public void createRegister(final String name,final String mail,final String passw1, final String passw2){
 

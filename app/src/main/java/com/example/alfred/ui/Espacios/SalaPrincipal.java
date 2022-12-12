@@ -3,6 +3,7 @@ package com.example.alfred.ui.Espacios;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
@@ -28,9 +31,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
+import com.example.alfred.ui.Gastos;
 import com.example.alfred.ui.Gastos_bbdd.Gastos_bbdd_activity;
+import com.example.alfred.ui.ListaTareas.TareasActivity;
 import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
+import com.example.alfred.ui.Lista_compra.Lista_compra;
 import com.example.alfred.ui.Lista_compra.Prueba.prueba_lista_compra_activity;
+import com.example.alfred.ui.login.Login_logo_activity;
+import com.example.alfred.ui.login.LoginActivity;
 import com.example.alfred.ui.login.Login_logo_activity;
 
 import java.util.HashMap;
@@ -50,6 +58,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
     Button buttonbanio;
     Button buttonOtros;
 
+    TextView titulo_sala_principal;
     ImageButton btnPopUpInvitacion;
 
     ListView lista_menu_sala;
@@ -77,11 +86,11 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         buttonbanio = findViewById(R.id.buttonbanio);
         buttonOtros = findViewById(R.id.buttonOtros);
 
+
+        getHome();
         btnPopUpInvitacion = findViewById(R.id.invitarPersonas);
         //View popupView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.popup_invitacion, null,false);
         //mailInvitacion = popupView.findViewById(R.id.text_popup_enviar_invitacion);
-
-        getHome();
 
         // localizamos el drawer menu, y lo mostramos
         drawerLayout = findViewById(R.id.main_layout_Sala);
@@ -145,6 +154,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
             sharedEmail = PreferenceUtils.getEmail(this);
         } else {
+            Toast.makeText(this, "Problema con el Shared Preference Email", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -179,7 +189,6 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
         actionBarDrawerToggle.syncState();
     }
 
-
     // SWITCH DEL MENÚ LATERAL, QUE NOS LLEVA A LAS DIFERENTES PANTALLAS
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -211,9 +220,7 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                         Intent intent3 = new Intent(this, Login_logo_activity.class);
                         startActivity(intent3);
                     } else{
-
                     }
-
                 }catch (Exception a){
                     Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
                 }
@@ -222,7 +229,6 @@ public class SalaPrincipal extends AppCompatActivity implements AdapterView.OnIt
                 break;
         }
     }
-
     // NOS CONECTAMOS CON LA BASE DE DATOS PARA OPTENER LA CASA ASOCIADA AL EMAIL EN CASO DE HABERLA
     public void getHome (){
         StringRequest request = new StringRequest(Request.Method.POST, URL2, new Response.Listener<String>() {

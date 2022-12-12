@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -13,8 +14,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +29,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alfred.R;
 import com.example.alfred.ui.Espacios.SalaPrincipal;
+import com.example.alfred.ui.Espacios.profileActivity;
+import com.example.alfred.ui.Gastos;
+import com.example.alfred.ui.Gastos_bbdd.Gastos_bbdd_activity;
+import com.example.alfred.ui.ListaTareas.TareasActivity;
+import com.example.alfred.ui.ListaTareas.Tareas_bbdd.Tareas_bbdd_activity;
+import com.example.alfred.ui.login.Login_logo_activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +46,7 @@ import java.util.Map;
 
 import utils.PreferenceUtils;
 
-public class prueba_lista_compra_activity extends AppCompatActivity {
+public class prueba_lista_compra_activity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     // DECLARACION DE VARIABLES
     EditText et_add_article;
@@ -44,6 +54,12 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
     ListView listview;
     String home;
     ProgressDialog mProgressDialog;
+
+    // Variables para el menu de navegacion lateral
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+
+    ListView lista_menu_compras;
 
     // URL´S QUE CONECTAN CON LAS BBDD
     String URL = "https://unscholarly-princip.000webhostapp.com/addArticles.php";
@@ -61,6 +77,21 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
 
         // METODO QUE IMPRIME POR PANTALLA LA LISTA DESDE LA BBDD
         GetMatchData();
+
+        // localizamos el drawer menu, y lo mostramos
+        drawerLayout = findViewById(R.id.main_layout_Compras);
+        lista_menu_compras = findViewById(R.id.lista_menu_compras);   //Esto es el listView en si para poder reconocer el item
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                R.string.app_name,
+                R.string.app_name
+        );
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        lista_menu_compras.setOnItemClickListener(this); //Para poder reconocer el item de la lista que estamos clickando
+
 
         btn_add_article.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,5 +277,62 @@ public class prueba_lista_compra_activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    //Bloque de Metodos del Menu -------------------------------------------------------------------
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
+        actionBarDrawerToggle.onOptionsItemSelected(item);
+        return true;
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable final Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (i){
+            case 0:
+                Intent intent = new Intent(this, SalaPrincipal.class);
+                startActivity(intent);
+                break;
+            case 1:
+                recreate();
+                break;
+            case 2:
+                Intent intent1 = new Intent(this, Tareas_bbdd_activity.class);
+                startActivity(intent1);
+                break;
+            case 3:
+                Intent intent2 = new Intent(this, Gastos_bbdd_activity.class);
+                startActivity(intent2);
+                break;
+            case 4:
+                Intent intent4 = new Intent(this, profileActivity.class);
+                startActivity(intent4);
+                break;
+            case 5: // ESTE ES EL CASO DE LA OPCIÓN DE CERRAR SESIÓN
+                try {
+                    if (PreferenceUtils.getEmail(this) != null || !PreferenceUtils.getEmail(this).equals("")){
+                        PreferenceUtils.deleteSharedPre(this);
+                        Intent intent3 = new Intent(this, Login_logo_activity.class);
+                        startActivity(intent3);
+                    } else{
+
+                    }
+
+                }catch (Exception a){
+                    Toast.makeText(this, "Error en el Log Out", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    // Cierre del Bloque de Metodos del Menu -------------------------------------------------------
+
 
 }
