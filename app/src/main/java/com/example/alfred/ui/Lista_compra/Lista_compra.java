@@ -117,6 +117,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public boolean onItemLongClick(AdapterView<?> lista, View item, int pos, long id) {
                 maybeRemoveItem(pos);
+                Toast.makeText(Lista_compra.this,"Articulo eliminado", Toast.LENGTH_LONG).show();
                 return true;
             }
         });
@@ -127,7 +128,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                 View result = view;
                 LayoutInflater inflater = (LayoutInflater)
                         getSystemService(LAYOUT_INFLATER_SERVICE);
-                View popupView = inflater.inflate(layout.popup_add_compra, null);
+                View popupView = inflater.inflate(layout.popup_invitacion, null);
 
                 // Creamos la ventana del pop-up
                 int width = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -146,6 +147,7 @@ public class Lista_compra extends AppCompatActivity implements AdapterView.OnIte
                     public void onClick(View view) {
                         Toast.makeText(Lista_compra.this, "Compra agregada correctamente", Toast.LENGTH_SHORT).show();
                         addItem(nombre.getText().toString());
+                        Toast.makeText(Lista_compra.this, "Compra agregada", Toast.LENGTH_SHORT).show();
                         popupWindow.dismiss();
                     }
                 });
